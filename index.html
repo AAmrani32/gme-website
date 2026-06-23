@@ -143,9 +143,11 @@ ul{list-style:none}
 .cred-val{font-size:24px;font-weight:800;color:var(--teal);letter-spacing:.02em}
 .cred-lbl{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-m)}
 .about-visual{position:relative}
-.about-frame{position:relative;background:var(--light-teal);border:1px solid rgba(80,165,173,.20);overflow:hidden;aspect-ratio:4/5}
-.about-frame-accent{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--teal),var(--sage))}
-.about-ship-svg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:48px}
+.about-frame{position:relative;background:var(--dark);border:1px solid rgba(80,165,173,.20);overflow:hidden;aspect-ratio:4/5}
+.about-frame-accent{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--teal),var(--sage));z-index:2}
+.about-frame-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;filter:brightness(0.55) saturate(0.7);transition:filter .6s ease}
+.about-frame:hover .about-frame-photo{filter:brightness(0.70) saturate(0.85)}
+.about-frame-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(4,14,20,.45) 0%,rgba(80,165,173,.08) 100%);z-index:1}
 .about-badge{position:absolute;bottom:-24px;right:28px;background:var(--white);border:1px solid rgba(80,165,173,.18);padding:20px 28px;box-shadow:0 8px 40px rgba(80,165,173,.10)}
 .badge-year{font-size:32px;font-weight:800;color:var(--teal);line-height:1}
 .badge-lbl{font-size:8.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-m);margin-top:4px}
@@ -193,14 +195,16 @@ ul{list-style:none}
 .metric-lbl{font-size:9.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text-m)}
 
 /* CAPABILITIES */
-.capabilities{background:var(--white);border-top:1px solid rgba(80,165,173,.08);padding:100px 0 0}
+.capabilities{position:relative;background:var(--dark);background-image:url('port-ship.webp');background-size:cover;background-position:center 40%;background-attachment:fixed;border-top:1px solid rgba(80,165,173,.08);padding:100px 0 0}
+.capabilities::before{content:'';position:absolute;inset:0;background:rgba(4,14,20,.88);z-index:0}
+.cap-header,.cap-grid{position:relative;z-index:1}
 .cap-header{text-align:center;padding:0 72px 72px;max-width:720px;margin:0 auto;position:relative}
 .cap-header::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:60px;height:2px;background:linear-gradient(to right,var(--teal),var(--sage))}
 .cap-tag{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px}
 .cap-tag::before,.cap-tag::after{content:'';display:block;width:24px;height:1.5px;background:var(--teal)}
-.cap-h2{font-size:clamp(30px,3.5vw,46px);font-weight:200;color:var(--text-h);line-height:1.2;letter-spacing:-.01em;margin-bottom:16px}
-.cap-h2 strong{font-weight:700}
-.cap-sub{font-size:14px;font-weight:300;color:var(--text-b);line-height:1.8}
+.cap-h2{font-size:clamp(30px,3.5vw,46px);font-weight:200;color:rgba(255,255,255,.92);line-height:1.2;letter-spacing:-.01em;margin-bottom:16px}
+.cap-h2 strong{font-weight:700;color:var(--teal)}
+.cap-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,.58);line-height:1.8}
 .cap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(80,165,173,.14);border-top:1px solid rgba(80,165,173,.14)}
 .cap-card{background:var(--light-teal);padding:52px 36px;min-height:400px;position:relative;overflow:hidden;display:flex;flex-direction:column;transition:background .35s,box-shadow .35s}
 .cap-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--teal),var(--sage));transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease)}
@@ -467,7 +471,9 @@ ul{list-style:none}
       <div class="about-visual">
         <div class="about-frame">
           <div class="about-frame-accent"></div>
-          <div class="about-ship-svg">
+          <img class="about-frame-photo" src="deck-crew.jpg" alt="GME crew on deck">
+          <div class="about-frame-overlay"></div>
+          <div class="about-ship-svg" style="display:none">
             <svg viewBox="0 0 360 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;opacity:.85">
               <defs>
                 <linearGradient id="hullFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#50A5AD" stop-opacity=".13"/><stop offset="100%" stop-color="#50A5AD" stop-opacity=".04"/></linearGradient>
@@ -968,4 +974,4 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementB
 </script>
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
