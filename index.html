@@ -218,29 +218,23 @@ ul{list-style:none}
 .cap-card:hover .cap-card-link{gap:14px}
 
 /* NETWORK MAP */
-.network-map{background:var(--dark);padding:100px 0 0}
+.network-map{background:var(--dark);padding:100px 0 60px}
 .map-header{text-align:center;padding:0 72px 64px}
 .map-tag{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px}
 .map-tag::before,.map-tag::after{content:'';display:block;width:24px;height:1.5px;background:var(--teal)}
 .map-h2{font-size:clamp(30px,3.5vw,46px);font-weight:200;color:#fff;line-height:1.2;letter-spacing:-.01em;margin-bottom:16px}
 .map-h2 strong{font-weight:700;color:var(--teal-light)}
 .map-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,.50);line-height:1.8}
-.gme-map{position:relative;border-top:1px solid rgba(80,165,173,.12)}
-.gme-map-label{position:absolute;top:16px;left:20px;z-index:4;font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(80,165,173,.75)}
-.gme-map-legend{position:absolute;top:14px;right:20px;z-index:4;display:flex;gap:18px}
-.gme-legend-item{display:flex;align-items:center;gap:7px;font-size:8.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38)}
-.map-stats-strip{position:absolute;bottom:0;left:0;right:0;z-index:5;display:flex;align-items:center;justify-content:center;background:linear-gradient(to right,rgba(4,12,18,.96),rgba(8,28,36,.96),rgba(4,12,18,.96));border-top:1px solid rgba(80,165,173,.18);padding:14px 24px}
-.mss-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:0 28px}
-.mss-val{font-size:clamp(15px,2.2vw,20px);font-weight:800;color:var(--teal);letter-spacing:.04em}
-.mss-lbl{font-size:clamp(7px,1vw,8.5px);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.38);white-space:nowrap}
-.mss-div{width:1px;height:28px;background:rgba(80,165,173,.18);flex-shrink:0}
-.map-tooltip{position:absolute;z-index:20;pointer-events:none;background:rgba(6,18,24,.92);border:1px solid rgba(80,165,173,.45);padding:10px 15px;backdrop-filter:blur(8px);transform:translateY(-100%)}
-.mtt-type{font-size:7.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(80,165,173,.65);margin-bottom:4px}
-.mtt-name{font-size:11px;font-weight:600;color:#fff;letter-spacing:.05em}
-.map-port,.map-hub{cursor:pointer}
-.arc-flow{stroke-dasharray:8 5;animation:arcFlow 5s linear infinite}
-@keyframes arcFlow{to{stroke-dashoffset:-104}}
+.gme-map-wrap{position:relative;max-width:860px;margin:0 auto;border:1px solid rgba(80,165,173,.18);box-shadow:0 0 80px rgba(80,165,173,.06),0 0 200px rgba(4,14,20,.9),inset 0 0 120px rgba(4,14,20,.4)}
+.gme-map-wrap::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.018) 3px,rgba(0,0,0,.018) 4px);pointer-events:none;z-index:10}
 #gmeMapSvg{display:block;width:100%;height:auto}
+.arc-flow{stroke-dasharray:10 6;animation:arcFlow 5s linear infinite}
+@keyframes arcFlow{to{stroke-dashoffset:-64}}
+.map-stats-row{display:flex;align-items:center;justify-content:center;background:rgba(4,12,18,.97);border-top:1px solid rgba(80,165,173,.18);padding:20px 0}
+.msr-item{display:flex;flex-direction:column;align-items:center;gap:4px;padding:0 40px}
+.msr-val{font-size:clamp(17px,2.5vw,23px);font-weight:800;color:var(--teal);letter-spacing:.04em}
+.msr-lbl{font-size:8px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);white-space:nowrap}
+.msr-div{width:1px;height:30px;background:rgba(80,165,173,.18);flex-shrink:0}
 
 /* TESTIMONIALS */
 .testimonials{background:var(--mid-teal);padding:100px 72px;border-top:1px solid rgba(80,165,173,.18)}
@@ -564,118 +558,206 @@ ul{list-style:none}
     <h2 class="map-h2">Built Around<br/><strong>Where Ships Move.</strong></h2>
     <p class="map-sub">Dubai is our primary hub. Regional operations in Singapore, London and Geneva. Supply coverage across every major shipping lane.</p>
   </div>
-  <div class="gme-map rev">
-    <span class="gme-map-label">GME Global Port Presence</span>
-    <div class="gme-map-legend">
-      <span class="gme-legend-item"><svg width="10" height="10"><circle cx="5" cy="5" r="4" fill="#50A5AD"/></svg>Hub City</span>
-      <span class="gme-legend-item"><svg width="10" height="10"><circle cx="5" cy="5" r="3" fill="#8EC4A8"/></svg>Partner Port</span>
-      <span class="gme-legend-item"><svg width="18" height="10"><line x1="0" y1="5" x2="18" y2="5" stroke="#50A5AD" stroke-width="1.5" stroke-dasharray="3 2"/></svg>Active Route</span>
-    </div>
-    <svg id="gmeMapSvg" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+  <div class="gme-map-wrap rev">
+    <svg id="gmeMapSvg" viewBox="0 0 960 440" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <radialGradient id="mapBg" cx="55%" cy="45%" r="65%"><stop offset="0%" stop-color="#0D2C38"/><stop offset="100%" stop-color="#040E14"/></radialGradient>
-        <filter id="mglow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        <filter id="mglowX" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <!-- Backgrounds -->
+        <radialGradient id="mapBg" cx="64%" cy="38%" r="72%">
+          <stop offset="0%" stop-color="#0D2C38"/>
+          <stop offset="45%" stop-color="#081C24"/>
+          <stop offset="100%" stop-color="#020A10"/>
+        </radialGradient>
+        <radialGradient id="dubaiAtmo" cx="64%" cy="38%" r="32%">
+          <stop offset="0%" stop-color="#50A5AD" stop-opacity=".22"/>
+          <stop offset="55%" stop-color="#50A5AD" stop-opacity=".06"/>
+          <stop offset="100%" stop-color="#50A5AD" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="vignette" cx="50%" cy="50%" r="65%">
+          <stop offset="25%" stop-color="#020A10" stop-opacity="0"/>
+          <stop offset="100%" stop-color="#020A10" stop-opacity=".92"/>
+        </radialGradient>
+        <!-- Route gradients -->
+        <linearGradient id="rSG" x1="620" y1="162" x2="757" y2="230" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#50A5AD" stop-opacity=".95"/>
+          <stop offset="100%" stop-color="#50A5AD" stop-opacity=".25"/>
+        </linearGradient>
+        <linearGradient id="rRT" x1="620" y1="162" x2="488" y2="98" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#50A5AD" stop-opacity=".90"/>
+          <stop offset="100%" stop-color="#50A5AD" stop-opacity=".22"/>
+        </linearGradient>
+        <linearGradient id="rNY" x1="620" y1="162" x2="278" y2="128" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#50A5AD" stop-opacity=".72"/>
+          <stop offset="100%" stop-color="#50A5AD" stop-opacity=".14"/>
+        </linearGradient>
+        <linearGradient id="rCT" x1="620" y1="162" x2="522" y2="348" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#50A5AD" stop-opacity=".75"/>
+          <stop offset="100%" stop-color="#50A5AD" stop-opacity=".18"/>
+        </linearGradient>
+        <linearGradient id="rMB" x1="620" y1="162" x2="669" y2="186" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#8EC4A8" stop-opacity=".80"/>
+          <stop offset="100%" stop-color="#8EC4A8" stop-opacity=".38"/>
+        </linearGradient>
+        <linearGradient id="rPR" x1="620" y1="162" x2="539" y2="136" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#8EC4A8" stop-opacity=".78"/>
+          <stop offset="100%" stop-color="#8EC4A8" stop-opacity=".32"/>
+        </linearGradient>
+        <!-- Glow filters -->
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="glowLg" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="glowXL" x="-200%" y="-200%" width="500%" height="500%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="22" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
       </defs>
-      <rect width="1000" height="500" fill="url(#mapBg)"/>
-      <g stroke="rgba(80,165,173,0.06)" stroke-width=".5" fill="none">
-        <line x1="0" y1="83" x2="1000" y2="83"/><line x1="0" y1="167" x2="1000" y2="167"/><line x1="0" y1="250" x2="1000" y2="250"/><line x1="0" y1="333" x2="1000" y2="333"/><line x1="0" y1="417" x2="1000" y2="417"/>
-        <line x1="83" y1="0" x2="83" y2="500"/><line x1="167" y1="0" x2="167" y2="500"/><line x1="250" y1="0" x2="250" y2="500"/><line x1="333" y1="0" x2="333" y2="500"/><line x1="417" y1="0" x2="417" y2="500"/><line x1="500" y1="0" x2="500" y2="500"/><line x1="583" y1="0" x2="583" y2="500"/><line x1="667" y1="0" x2="667" y2="500"/><line x1="750" y1="0" x2="750" y2="500"/><line x1="833" y1="0" x2="833" y2="500"/><line x1="917" y1="0" x2="917" y2="500"/>
+
+      <!-- BACKGROUND + ATMOSPHERIC GLOW -->
+      <rect width="960" height="440" fill="url(#mapBg)"/>
+      <rect width="960" height="440" fill="url(#dubaiAtmo)"/>
+
+      <!-- GRID -->
+      <g stroke="rgba(80,165,173,0.04)" stroke-width=".5" fill="none">
+        <line x1="0" y1="73" x2="960" y2="73"/><line x1="0" y1="147" x2="960" y2="147"/>
+        <line x1="0" y1="220" x2="960" y2="220"/><line x1="0" y1="293" x2="960" y2="293"/>
+        <line x1="0" y1="367" x2="960" y2="367"/>
+        <line x1="80" y1="0" x2="80" y2="440"/><line x1="160" y1="0" x2="160" y2="440"/>
+        <line x1="240" y1="0" x2="240" y2="440"/><line x1="320" y1="0" x2="320" y2="440"/>
+        <line x1="400" y1="0" x2="400" y2="440"/><line x1="480" y1="0" x2="480" y2="440"/>
+        <line x1="560" y1="0" x2="560" y2="440"/><line x1="640" y1="0" x2="640" y2="440"/>
+        <line x1="720" y1="0" x2="720" y2="440"/><line x1="800" y1="0" x2="800" y2="440"/>
+        <line x1="880" y1="0" x2="880" y2="440"/>
       </g>
-      <g stroke="rgba(80,165,173,0.10)" stroke-width=".6" stroke-dasharray="4 6" fill="none"><line x1="0" y1="202" x2="1000" y2="202"/><line x1="0" y1="298" x2="1000" y2="298"/></g>
-      <g fill="rgba(80,165,173,0.08)" stroke="rgba(80,165,173,0.22)" stroke-width=".8">
-        <path d="M58,68 Q88,45 138,52 Q178,57 218,70 Q252,82 272,102 Q285,122 288,145 Q280,165 265,180 Q248,196 238,215 Q222,240 205,262 Q186,285 170,306 Q152,326 132,338 Q108,345 88,334 Q66,318 52,292 Q40,264 44,238 Q49,208 54,180 Q58,152 57,122 Q56,94 58,68Z"/>
-        <path d="M238,220 Q260,218 280,228 Q298,240 312,264 Q328,292 336,325 Q344,358 340,388 Q330,415 312,438 Q292,455 266,458 Q240,454 220,436 Q200,414 194,384 Q188,352 196,320 Q204,288 216,264 Q226,242 238,220Z"/>
-        <path d="M456,68 Q480,56 512,58 Q542,56 566,67 Q582,78 580,95 Q568,108 548,110 Q526,110 508,112 Q496,122 490,136 Q476,140 462,134 Q448,122 448,106 Q450,86 456,68Z"/>
-        <path d="M453,148 Q480,138 512,142 Q540,148 560,163 Q578,180 584,205 Q592,232 588,262 Q582,295 570,326 Q556,356 540,376 Q522,398 498,406 Q474,402 454,382 Q434,360 426,330 Q418,298 422,266 Q428,235 437,210 Q444,185 448,166 Q450,154 453,148Z"/>
-        <path d="M580,140 Q602,134 628,144 Q648,154 658,172 Q666,192 660,212 Q648,230 628,237 Q608,238 592,226 Q576,212 572,192 Q568,170 576,154 Q578,146 580,140Z"/>
-        <path d="M680,98 Q720,84 768,87 Q804,90 835,104 Q862,118 876,136 Q884,153 878,168 Q864,178 842,175 Q818,170 798,160 Q775,150 754,145 Q732,142 710,147 Q690,152 672,144 Q660,133 664,118 Q670,106 680,98Z"/>
-        <path d="M733,278 Q762,268 800,270 Q834,272 857,288 Q870,306 867,328 Q856,352 836,368 Q812,380 785,378 Q756,372 737,355 Q720,334 718,308 Q720,290 733,278Z"/>
+      <g stroke="rgba(80,165,173,0.09)" stroke-width=".7" stroke-dasharray="5 8" fill="none">
+        <line x1="0" y1="183" x2="960" y2="183"/>
+        <line x1="0" y1="265" x2="960" y2="265"/>
       </g>
-      <!-- ARCS -->
-      <path d="M652,180 Q728,294 788,247" fill="none" stroke="rgba(80,165,173,0.65)" stroke-width="1.4" class="arc-flow" style="animation-duration:4.5s;animation-delay:0s"/>
-      <path d="M652,180 Q556,40 499,107" fill="none" stroke="rgba(80,165,173,0.62)" stroke-width="1.4" class="arc-flow" style="animation-duration:5.5s;animation-delay:-1.3s"/>
-      <path d="M652,180 Q460,-4 295,137" fill="none" stroke="rgba(80,165,173,0.32)" stroke-width="1.0" class="arc-flow" style="animation-duration:8.0s;animation-delay:-3.8s"/>
-      <path d="M652,180 Q614,102 565,145" fill="none" stroke="rgba(142,196,168,0.48)" stroke-width="0.9" class="arc-flow" style="animation-duration:3.5s;animation-delay:-1.8s"/>
-      <path d="M652,180 Q622,136 590,163" fill="none" stroke="rgba(142,196,168,0.42)" stroke-width="0.9" class="arc-flow" style="animation-duration:3.0s;animation-delay:-0.5s"/>
-      <path d="M652,180 Q556,350 551,372" fill="none" stroke="rgba(80,165,173,0.40)" stroke-width="1.0" class="arc-flow" style="animation-duration:5.5s;animation-delay:-2.2s"/>
-      <path d="M652,180 Q742,152 796,219" fill="none" stroke="rgba(142,196,168,0.46)" stroke-width="1.0" class="arc-flow" style="animation-duration:4.0s;animation-delay:-1.0s"/>
-      <path d="M652,180 Q678,196 702,197" fill="none" stroke="rgba(142,196,168,0.36)" stroke-width="0.8" class="arc-flow" style="animation-duration:3.2s;animation-delay:-1.1s"/>
-      <path d="M788,247 Q600,88 513,106" fill="none" stroke="rgba(80,165,173,0.40)" stroke-width="1.1" class="arc-flow" style="animation-duration:6.5s;animation-delay:-2.8s"/>
-      <path d="M499,107 Q398,46 295,137" fill="none" stroke="rgba(80,165,173,0.34)" stroke-width="1.0" class="arc-flow" style="animation-duration:5.8s;animation-delay:-4.2s"/>
+
+      <!-- LAND MASSES -->
+      <g fill="rgba(80,165,173,0.07)" stroke="rgba(80,165,173,0.22)" stroke-width=".8">
+        <path d="M55,62 Q83,40 130,47 Q168,52 206,64 Q238,76 256,95 Q268,114 270,136 Q262,155 248,169 Q232,184 223,202 Q208,226 192,248 Q174,270 158,290 Q141,309 122,320 Q99,327 80,317 Q59,302 46,277 Q34,250 38,225 Q43,196 48,168 Q52,141 51,112 Q50,86 55,62Z"/>
+        <path d="M223,202 Q244,200 263,210 Q280,221 293,244 Q308,271 315,302 Q322,334 318,362 Q309,388 293,409 Q274,426 250,429 Q225,425 206,408 Q187,387 181,358 Q175,327 183,297 Q190,267 202,244 Q212,224 223,202Z"/>
+        <path d="M432,61 Q455,50 485,52 Q513,50 536,61 Q550,71 548,87 Q537,98 518,100 Q497,100 480,102 Q469,111 463,124 Q451,128 438,122 Q425,111 426,97 Q427,78 432,61Z"/>
+        <path d="M429,140 Q455,130 485,134 Q512,140 531,154 Q548,170 554,194 Q561,219 557,248 Q551,279 540,309 Q527,337 512,356 Q495,376 472,383 Q449,380 430,361 Q411,340 404,311 Q396,280 400,249 Q405,219 413,196 Q420,173 423,156 Q426,145 429,140Z"/>
+        <path d="M552,131 Q573,125 597,135 Q615,145 624,161 Q630,180 624,198 Q613,215 594,222 Q575,223 560,211 Q545,198 542,179 Q538,159 545,144 Q547,137 552,131Z"/>
+        <path d="M647,89 Q685,76 730,79 Q763,82 792,95 Q816,108 828,125 Q835,141 829,154 Q816,163 796,160 Q773,155 754,145 Q733,137 712,140 Q693,144 677,137 Q666,126 669,111 Q675,97 647,89Z"/>
+        <path d="M698,257 Q724,248 759,250 Q791,252 813,267 Q824,284 821,305 Q811,326 793,340 Q770,351 744,350 Q716,344 698,328 Q682,308 681,283 Q683,267 698,257Z"/>
+      </g>
+
+      <!-- RADAR SWEEP (centred on Dubai 620,162) -->
+      <g transform="translate(620,162)">
+        <line x1="0" y1="0" x2="360" y2="0" stroke="rgba(80,165,173,0.35)" stroke-width="1.5">
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="10s" repeatCount="indefinite"/>
+        </line>
+        <line x1="0" y1="0" x2="360" y2="0" stroke="rgba(80,165,173,0.10)" stroke-width="5">
+          <animateTransform attributeName="transform" type="rotate" from="-12" to="348" dur="10s" repeatCount="indefinite"/>
+        </line>
+      </g>
+
+      <!-- ROUTES (gradient stroke + flowing dashes) -->
+      <path d="M620,162 Q698,272 757,230" fill="none" stroke="url(#rSG)" stroke-width="1.5" class="arc-flow" style="animation-duration:5s"/>
+      <path d="M620,162 Q532,28 488,98" fill="none" stroke="url(#rRT)" stroke-width="1.5" class="arc-flow" style="animation-duration:5.5s;animation-delay:-1.5s"/>
+      <path d="M620,162 Q432,-12 278,128" fill="none" stroke="url(#rNY)" stroke-width="1.2" class="arc-flow" style="animation-duration:9s;animation-delay:-4s"/>
+      <path d="M620,162 Q528,322 522,348" fill="none" stroke="url(#rCT)" stroke-width="1.2" class="arc-flow" style="animation-duration:6s;animation-delay:-2s"/>
+      <path d="M620,162 Q644,174 669,186" fill="none" stroke="url(#rMB)" stroke-width="1.1" class="arc-flow" style="animation-duration:3.2s;animation-delay:-0.5s"/>
+      <path d="M620,162 Q580,118 539,136" fill="none" stroke="url(#rPR)" stroke-width="1.1" class="arc-flow" style="animation-duration:3.5s;animation-delay:-1s"/>
+
       <!-- TRAFFIC DOTS -->
+      <circle r="3" fill="#50A5AD" filter="url(#glow)"><animateMotion dur="5s" repeatCount="indefinite" path="M620,162 Q698,272 757,230"/></circle>
+      <circle r="1.8" fill="#C8F0F2" opacity=".8"><animateMotion dur="5s" begin="2.4s" repeatCount="indefinite" path="M620,162 Q698,272 757,230"/></circle>
+      <circle r="2.8" fill="#50A5AD" filter="url(#glow)"><animateMotion dur="5.5s" repeatCount="indefinite" path="M620,162 Q532,28 488,98"/></circle>
+      <circle r="1.8" fill="#C8F0F2" opacity=".75"><animateMotion dur="5.5s" begin="2.8s" repeatCount="indefinite" path="M620,162 Q532,28 488,98"/></circle>
+      <circle r="2.5" fill="#50A5AD" opacity=".78"><animateMotion dur="9s" begin="1s" repeatCount="indefinite" path="M620,162 Q432,-12 278,128"/></circle>
+      <circle r="2.5" fill="#50A5AD" opacity=".76"><animateMotion dur="6s" begin="2s" repeatCount="indefinite" path="M620,162 Q528,322 522,348"/></circle>
+      <circle r="2.2" fill="#8EC4A8" opacity=".88"><animateMotion dur="3.2s" begin="0.5s" repeatCount="indefinite" path="M620,162 Q644,174 669,186"/></circle>
+      <circle r="2.2" fill="#8EC4A8" opacity=".84"><animateMotion dur="3.5s" begin="1s" repeatCount="indefinite" path="M620,162 Q580,118 539,136"/></circle>
+
+      <!-- DESTINATION HUBS -->
+      <!-- Singapore -->
       <g>
-        <circle r="2.8" fill="#50A5AD" opacity=".95" filter="url(#mglow)"><animateMotion dur="5s" repeatCount="indefinite" path="M652,180 Q728,294 788,247"/></circle>
-        <circle r="2.0" fill="#8EC4A8" opacity=".70"><animateMotion dur="5s" begin="1.7s" repeatCount="indefinite" path="M652,180 Q728,294 788,247"/></circle>
-        <circle r="2.6" fill="#50A5AD" opacity=".88" filter="url(#mglow)"><animateMotion dur="6s" repeatCount="indefinite" path="M652,180 Q556,40 499,107"/></circle>
-        <circle r="2.0" fill="#8EC4A8" opacity=".62"><animateMotion dur="6s" begin="3s" repeatCount="indefinite" path="M652,180 Q556,40 499,107"/></circle>
-        <circle r="2.4" fill="#50A5AD" opacity=".72"><animateMotion dur="9s" begin="1s" repeatCount="indefinite" path="M652,180 Q460,-4 295,137"/></circle>
-        <circle r="2.3" fill="#8EC4A8" opacity=".80"><animateMotion dur="3.8s" repeatCount="indefinite" path="M652,180 Q614,102 565,145"/></circle>
-        <circle r="2.2" fill="#8EC4A8" opacity=".82"><animateMotion dur="3.2s" begin="0.5s" repeatCount="indefinite" path="M652,180 Q622,136 590,163"/></circle>
-        <circle r="2.3" fill="#50A5AD" opacity=".70"><animateMotion dur="6s" begin="2s" repeatCount="indefinite" path="M652,180 Q556,350 551,372"/></circle>
-        <circle r="2.3" fill="#8EC4A8" opacity=".78"><animateMotion dur="4.2s" begin="0.3s" repeatCount="indefinite" path="M652,180 Q742,152 796,219"/></circle>
-        <circle r="2.0" fill="#8EC4A8" opacity=".74"><animateMotion dur="3.5s" begin="0.6s" repeatCount="indefinite" path="M652,180 Q678,196 702,197"/></circle>
-        <circle r="2.5" fill="#50A5AD" opacity=".78" filter="url(#mglow)"><animateMotion dur="7s" begin="1.5s" repeatCount="indefinite" path="M788,247 Q600,88 513,106"/></circle>
-        <circle r="2.4" fill="#50A5AD" opacity=".74"><animateMotion dur="6.5s" begin="2s" repeatCount="indefinite" path="M499,107 Q398,46 295,137"/></circle>
+        <circle cx="757" cy="230" r="3" fill="none" stroke="#50A5AD" stroke-width="1"><animate attributeName="r" from="3" to="16" dur="3s" begin=".5s" repeatCount="indefinite"/><animate attributeName="opacity" from=".5" to="0" dur="3s" begin=".5s" repeatCount="indefinite"/></circle>
+        <circle cx="757" cy="230" r="3.5" fill="#50A5AD" filter="url(#glow)" opacity=".85"/>
+        <circle cx="757" cy="230" r="2.8" fill="#50A5AD"/>
+        <text x="757" y="244" text-anchor="middle" font-family="Raleway,sans-serif" font-size="7" font-weight="700" letter-spacing=".13em" fill="rgba(80,165,173,0.82)">SINGAPORE</text>
       </g>
-      <!-- PORT DOTS -->
+      <!-- Rotterdam + London -->
       <g>
-        <g class="map-port" data-name="New York" data-type="Partner Port"><circle cx="295" cy="137" r="3.5" fill="#8EC4A8" opacity=".85"/><circle cx="295" cy="137" r="7" fill="none" stroke="#8EC4A8" stroke-width=".8" opacity=".30"/></g>
-        <g class="map-port" data-name="Houston" data-type="Partner Port"><circle cx="235" cy="167" r="2.8" fill="#8EC4A8" opacity=".72"/></g>
-        <g class="map-port" data-name="Rotterdam" data-type="Partner Port"><circle cx="513" cy="106" r="3.5" fill="#8EC4A8" opacity=".85"/><circle cx="513" cy="106" r="7" fill="none" stroke="#8EC4A8" stroke-width=".8" opacity=".30"/></g>
-        <g class="map-port" data-name="Hamburg" data-type="Partner Port"><circle cx="527" cy="101" r="2.8" fill="#8EC4A8" opacity=".74"/></g>
-        <g class="map-port" data-name="Barcelona" data-type="Partner Port"><circle cx="506" cy="135" r="2.8" fill="#8EC4A8" opacity=".72"/></g>
-        <g class="map-port" data-name="Gibraltar" data-type="Partner Port"><circle cx="484" cy="150" r="2.5" fill="#8EC4A8" opacity=".62"/></g>
-        <g class="map-port" data-name="Piraeus · Greece" data-type="Partner Port"><circle cx="565" cy="145" r="3.5" fill="#8EC4A8" opacity=".85"/><circle cx="565" cy="145" r="7" fill="none" stroke="#8EC4A8" stroke-width=".8" opacity=".30"/></g>
-        <g class="map-port" data-name="Port Said · Egypt" data-type="Partner Port"><circle cx="590" cy="163" r="3.0" fill="#8EC4A8" opacity=".82"/></g>
-        <g class="map-port" data-name="Jeddah · Saudi Arabia" data-type="Partner Port"><circle cx="609" cy="190" r="3.0" fill="#8EC4A8" opacity=".76"/></g>
-        <g class="map-port" data-name="Fujairah · UAE" data-type="Partner Port"><circle cx="668" cy="179" r="3.0" fill="#8EC4A8" opacity=".80"/></g>
-        <g class="map-port" data-name="Mumbai · India" data-type="Partner Port"><circle cx="702" cy="197" r="3.0" fill="#8EC4A8" opacity=".76"/></g>
-        <g class="map-port" data-name="Colombo · Sri Lanka" data-type="Partner Port"><circle cx="722" cy="232" r="2.8" fill="#8EC4A8" opacity=".70"/></g>
-        <g class="map-port" data-name="Mombasa · Kenya" data-type="Partner Port"><circle cx="610" cy="261" r="2.8" fill="#8EC4A8" opacity=".68"/></g>
-        <g class="map-port" data-name="Ho Chi Minh City · Vietnam" data-type="Partner Port"><circle cx="796" cy="219" r="3.5" fill="#8EC4A8" opacity=".85"/><circle cx="796" cy="219" r="7" fill="none" stroke="#8EC4A8" stroke-width=".8" opacity=".30"/></g>
-        <g class="map-port" data-name="Hong Kong" data-type="Partner Port"><circle cx="817" cy="188" r="3.0" fill="#8EC4A8" opacity=".78"/></g>
-        <g class="map-port" data-name="Shanghai" data-type="Partner Port"><circle cx="837" cy="164" r="3.0" fill="#8EC4A8" opacity=".76"/></g>
-        <g class="map-port" data-name="Cape Town · South Africa" data-type="Partner Port"><circle cx="551" cy="372" r="3.5" fill="#8EC4A8" opacity=".85"/><circle cx="551" cy="372" r="7" fill="none" stroke="#8EC4A8" stroke-width=".8" opacity=".30"/></g>
-        <g class="map-port" data-name="Lagos · Nigeria" data-type="Partner Port"><circle cx="509" cy="233" r="2.5" fill="#8EC4A8" opacity=".62"/></g>
+        <circle cx="488" cy="98" r="3.5" fill="#50A5AD" filter="url(#glow)" opacity=".82"/>
+        <circle cx="488" cy="98" r="2.8" fill="#50A5AD"/>
+        <text x="488" y="89" text-anchor="middle" font-family="Raleway,sans-serif" font-size="7" font-weight="700" letter-spacing=".12em" fill="rgba(80,165,173,0.80)">ROTTERDAM</text>
       </g>
-      <!-- HUB MARKERS -->
-      <g class="map-hub" data-name="Dubai · JAFZA" data-type="Primary Hub — UAE" style="cursor:pointer">
-        <circle cx="652" cy="180" r="4" fill="none" stroke="#50A5AD" stroke-width="1.5"><animate attributeName="r" from="4" to="34" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" from="0.75" to="0" dur="3s" repeatCount="indefinite"/></circle>
-        <circle cx="652" cy="180" r="4" fill="none" stroke="#50A5AD" stroke-width="1.5"><animate attributeName="r" from="4" to="34" dur="3s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" from="0.75" to="0" dur="3s" begin="1s" repeatCount="indefinite"/></circle>
-        <circle cx="652" cy="180" r="5.5" fill="#50A5AD" filter="url(#mglowX)" opacity=".7"/>
-        <circle cx="652" cy="180" r="4.5" fill="#50A5AD"/>
-        <circle cx="652" cy="180" r="2" fill="#C8F0F2"/>
-        <text x="652" y="202" text-anchor="middle" font-family="Raleway,sans-serif" font-size="8.5" font-weight="700" letter-spacing=".12em" fill="#50A5AD">DUBAI</text>
-        <text x="652" y="212" text-anchor="middle" font-family="Raleway,sans-serif" font-size="6.5" font-weight="500" letter-spacing=".08em" fill="rgba(80,165,173,0.55)">PRIMARY HUB</text>
+      <g>
+        <circle cx="474" cy="99" r="2.5" fill="#8EC4A8" opacity=".78"/>
+        <text x="460" y="113" text-anchor="middle" font-family="Raleway,sans-serif" font-size="6.5" font-weight="600" letter-spacing=".10em" fill="rgba(142,196,168,0.65)">LONDON</text>
       </g>
-      <g class="map-hub" data-name="Singapore" data-type="Regional Hub — Asia-Pacific" style="cursor:pointer">
-        <circle cx="788" cy="247" r="4" fill="none" stroke="#50A5AD" stroke-width="1.2"><animate attributeName="r" from="4" to="24" dur="3s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="opacity" from="0.65" to="0" dur="3s" begin="0.8s" repeatCount="indefinite"/></circle>
-        <circle cx="788" cy="247" r="4.5" fill="#50A5AD" filter="url(#mglow)" opacity=".7"/>
-        <circle cx="788" cy="247" r="4" fill="#50A5AD"/>
-        <text x="788" y="265" text-anchor="middle" font-family="Raleway,sans-serif" font-size="7.5" font-weight="700" letter-spacing=".1em" fill="rgba(80,165,173,0.85)">SINGAPORE</text>
+      <!-- New York -->
+      <g>
+        <circle cx="278" cy="128" r="3.5" fill="#50A5AD" filter="url(#glow)" opacity=".72"/>
+        <circle cx="278" cy="128" r="2.8" fill="#50A5AD"/>
+        <text x="278" y="142" text-anchor="middle" font-family="Raleway,sans-serif" font-size="7" font-weight="700" letter-spacing=".12em" fill="rgba(80,165,173,0.72)">NEW YORK</text>
       </g>
-      <g class="map-hub" data-name="London · UK" data-type="Regional Hub — Europe" style="cursor:pointer">
-        <circle cx="499" cy="107" r="4" fill="none" stroke="#50A5AD" stroke-width="1.2"><animate attributeName="r" from="4" to="22" dur="3s" begin="1.6s" repeatCount="indefinite"/><animate attributeName="opacity" from="0.65" to="0" dur="3s" begin="1.6s" repeatCount="indefinite"/></circle>
-        <circle cx="499" cy="107" r="4" fill="#50A5AD" filter="url(#mglow)" opacity=".7"/>
-        <circle cx="499" cy="107" r="3.5" fill="#50A5AD"/>
-        <text x="499" y="122" text-anchor="middle" font-family="Raleway,sans-serif" font-size="7.5" font-weight="700" letter-spacing=".1em" fill="rgba(80,165,173,0.85)">LONDON</text>
+      <!-- Cape Town -->
+      <g>
+        <circle cx="522" cy="348" r="3.5" fill="#50A5AD" filter="url(#glow)" opacity=".72"/>
+        <circle cx="522" cy="348" r="2.8" fill="#50A5AD"/>
+        <text x="522" y="361" text-anchor="middle" font-family="Raleway,sans-serif" font-size="7" font-weight="700" letter-spacing=".12em" fill="rgba(80,165,173,0.72)">CAPE TOWN</text>
       </g>
-      <g class="map-hub" data-name="Geneva · Switzerland" data-type="Regional Hub — Europe" style="cursor:pointer">
-        <circle cx="518" cy="116" r="3.5" fill="#8EC4A8" opacity=".85"/>
-        <text x="518" y="131" text-anchor="middle" font-family="Raleway,sans-serif" font-size="7" font-weight="600" letter-spacing=".1em" fill="rgba(142,196,168,0.75)">GENEVA</text>
+      <!-- Mumbai -->
+      <g>
+        <circle cx="669" cy="186" r="2.8" fill="#8EC4A8" opacity=".85"/>
+        <text x="680" y="197" text-anchor="start" font-family="Raleway,sans-serif" font-size="6.5" font-weight="600" letter-spacing=".10em" fill="rgba(142,196,168,0.68)">MUMBAI</text>
       </g>
+      <!-- Piraeus -->
+      <g>
+        <circle cx="539" cy="136" r="2.8" fill="#8EC4A8" opacity=".82"/>
+        <text x="539" y="128" text-anchor="middle" font-family="Raleway,sans-serif" font-size="6.5" font-weight="600" letter-spacing=".10em" fill="rgba(142,196,168,0.72)">PIRAEUS</text>
+      </g>
+
+      <!-- DUBAI PRIMARY HUB (620,162) -->
+      <circle cx="620" cy="162" r="90" fill="#50A5AD" opacity=".03" filter="url(#glowXL)"/>
+      <circle cx="620" cy="162" r="55" fill="#50A5AD" opacity=".05" filter="url(#glowLg)"/>
+      <!-- Pulse rings -->
+      <circle cx="620" cy="162" r="7" fill="none" stroke="#50A5AD" stroke-width="1.5">
+        <animate attributeName="r" from="7" to="52" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" from=".85" to="0" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="620" cy="162" r="7" fill="none" stroke="#50A5AD" stroke-width="1.5">
+        <animate attributeName="r" from="7" to="52" dur="3s" begin="1s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" from=".85" to="0" dur="3s" begin="1s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="620" cy="162" r="7" fill="none" stroke="#50A5AD" stroke-width="1.5">
+        <animate attributeName="r" from="7" to="52" dur="3s" begin="2s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" from=".85" to="0" dur="3s" begin="2s" repeatCount="indefinite"/>
+      </circle>
+      <!-- Crosshair -->
+      <line x1="603" y1="162" x2="637" y2="162" stroke="#50A5AD" stroke-width=".9" opacity=".65"/>
+      <line x1="620" y1="145" x2="620" y2="179" stroke="#50A5AD" stroke-width=".9" opacity=".65"/>
+      <circle cx="620" cy="162" r="12" fill="none" stroke="#50A5AD" stroke-width=".6" opacity=".30"/>
+      <!-- Core -->
+      <circle cx="620" cy="162" r="8" fill="#50A5AD" filter="url(#glowLg)" opacity=".7"/>
+      <circle cx="620" cy="162" r="6" fill="#50A5AD"/>
+      <circle cx="620" cy="162" r="2.5" fill="#C8F0F2"/>
+      <!-- Labels -->
+      <text x="620" y="191" text-anchor="middle" font-family="Raleway,sans-serif" font-size="9.5" font-weight="700" letter-spacing=".15em" fill="#50A5AD">DUBAI</text>
+      <text x="620" y="202" text-anchor="middle" font-family="Raleway,sans-serif" font-size="6.5" font-weight="500" letter-spacing=".12em" fill="rgba(80,165,173,0.50)">PRIMARY HUB</text>
+
+      <!-- EDGE VIGNETTE -->
+      <rect width="960" height="440" fill="url(#vignette)" pointer-events="none"/>
     </svg>
-    <div class="map-stats-strip">
-      <div class="mss-item"><span class="mss-val">25</span><span class="mss-lbl">Active Routes</span></div>
-      <div class="mss-div"></div>
-      <div class="mss-item"><span class="mss-val">30+</span><span class="mss-lbl">Partner Ports</span></div>
-      <div class="mss-div"></div>
-      <div class="mss-item"><span class="mss-val">6</span><span class="mss-lbl">Continents Served</span></div>
-      <div class="mss-div"></div>
-      <div class="mss-item"><span class="mss-val">24/7</span><span class="mss-lbl">Supply Availability</span></div>
+
+    <div class="map-stats-row">
+      <div class="msr-item"><span class="msr-val">25</span><span class="msr-lbl">Active Routes</span></div>
+      <div class="msr-div"></div>
+      <div class="msr-item"><span class="msr-val">30+</span><span class="msr-lbl">Partner Ports</span></div>
+      <div class="msr-div"></div>
+      <div class="msr-item"><span class="msr-val">6</span><span class="msr-lbl">Continents Served</span></div>
+      <div class="msr-div"></div>
+      <div class="msr-item"><span class="msr-val">24/7</span><span class="msr-lbl">Supply Availability</span></div>
     </div>
-    <div id="mapTooltip" class="map-tooltip" style="display:none"><div class="mtt-type"></div><div class="mtt-name"></div></div>
   </div>
 </section>
 
@@ -974,4 +1056,4 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementB
 </script>
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
