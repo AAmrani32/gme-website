@@ -308,13 +308,14 @@ ul{list-style:none}
 .sustain-stat-lbl{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--text-m);margin-top:6px}
 
 /* CONTACT */
-.contact{background:var(--light-teal);border-top:1px solid rgba(80,165,173,.15);padding:100px 72px}
-.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1280px;margin:0 auto;align-items:start}
-.contact-tag{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.contact{background:var(--light-teal);border-top:1px solid rgba(80,165,173,.15);padding:80px 72px}
+.contact-header{max-width:1280px;margin:0 auto 44px}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;max-width:1280px;margin:0 auto;align-items:start}
+.contact-tag{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .contact-tag::before{content:'';display:block;width:28px;height:1.5px;background:var(--teal)}
-.contact-h2{font-size:clamp(28px,3.2vw,44px);font-weight:200;color:var(--text-h);line-height:1.2;letter-spacing:-.01em;margin-bottom:24px}
+.contact-h2{font-size:clamp(26px,3vw,40px);font-weight:200;color:var(--text-h);line-height:1.2;letter-spacing:-.01em;margin-bottom:16px}
 .contact-h2 strong{font-weight:700}
-.contact-body{font-size:14px;font-weight:300;color:var(--text-b);line-height:1.9;margin-bottom:40px}
+.contact-body{font-size:14px;font-weight:300;color:var(--text-b);line-height:1.85;margin-bottom:0}
 .contact-offices{display:flex;flex-direction:column;gap:24px}
 .contact-office{padding:24px 28px;background:var(--white);border:1px solid rgba(80,165,173,.15);border-left:3px solid var(--teal);box-shadow:0 2px 12px rgba(80,165,173,.08)}
 .contact-office-city{font-size:13px;font-weight:700;color:var(--text-h);letter-spacing:.06em;margin-bottom:4px}
@@ -327,7 +328,7 @@ ul{list-style:none}
 .form-field input,.form-field textarea{font-family:'Raleway',sans-serif;font-size:13.5px;font-weight:400;color:var(--text-h);background:var(--white);border:1px solid rgba(80,165,173,.20);padding:13px 16px;transition:border-color .3s,background .3s;outline:none;resize:vertical}
 .form-field input:focus,.form-field textarea:focus{border-color:var(--teal);background:var(--light-teal)}
 .form-field textarea{min-height:160px}
-.form-submit{font-family:'Raleway',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;background:var(--teal);color:#fff;padding:18px;border:none;cursor:pointer;width:100%;text-align:center;transition:background .3s}
+.form-submit{font-family:'Raleway',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;background:var(--teal);color:#fff;padding:14px 36px;border:none;cursor:pointer;width:auto;align-self:flex-start;transition:background .3s}
 .form-submit:hover{background:var(--teal-dark)}
 
 /* FOOTER */
@@ -493,10 +494,11 @@ ul{list-style:none}
   .nr-title{font-size:12.5px}
 
   /* Contact */
-  .contact{padding:60px 24px;overflow:hidden}
-  .contact-inner{grid-template-columns:1fr;gap:44px;width:100%;min-width:0}
+  .contact{padding:56px 24px;overflow:hidden}
+  .contact-header{margin-bottom:32px}
+  .contact-inner{grid-template-columns:1fr;gap:36px;width:100%;min-width:0}
   .form-row{grid-template-columns:1fr}
-  .form-submit{width:100%;text-align:center;padding:16px}
+  .form-submit{width:100%;text-align:center;padding:14px 24px}
   .form-field input,.form-field textarea{font-size:16px}/* prevents iOS zoom */
 
   /* Footer */
@@ -1073,12 +1075,13 @@ ul{list-style:none}
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
+  <div class="contact-header rev">
+    <p class="contact-tag">Get in Touch</p>
+    <h2 class="contact-h2">Talk to our <strong>trading desk.</strong></h2>
+    <p class="contact-body">Available 24/7 across Gulf, African and Asian port corridors. Stem quotes, credit terms, short-notice supply. Get in touch and we will respond.</p>
+  </div>
   <div class="contact-inner">
-    <div>
-      <p class="contact-tag">Get in Touch</p>
-      <h2 class="contact-h2">Talk to our<br/><strong>trading desk.</strong></h2>
-      <p class="contact-body">Available 24/7 across Gulf, African and Asian port corridors. Stem quotes, credit terms, short-notice supply. Get in touch and we will respond.</p>
-      <div class="contact-offices">
+    <div class="contact-offices rev-l">
         <div class="contact-office">
           <div class="contact-office-city">Dubai — Head Office</div>
           <p>Unit 1408, Regal Tower, Business Bay<br>Dubai, United Arab Emirates<br><a href="tel:+97144000000">+971 4 400 0000</a> &nbsp;·&nbsp; <a href="mailto:enquiries@gmefuels.com">enquiries@gmefuels.com</a></p>
@@ -1091,9 +1094,8 @@ ul{list-style:none}
           <div class="contact-office-city">London — Europe</div>
           <p>30 St Mary Axe, London EC3A 8BF<br>United Kingdom<br><a href="mailto:london@gmefuels.com">london@gmefuels.com</a></p>
         </div>
-      </div>
     </div>
-    <div>
+    <div class="rev-r">
       <form class="contact-form" onsubmit="return false">
         <div class="form-row">
           <div class="form-field"><label for="cf-name">Full Name</label><input type="text" id="cf-name" placeholder="John Smith"></div>
