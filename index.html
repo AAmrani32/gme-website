@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>GME — Global Marine Energy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Raleway',sans-serif;background:#fff;color:#1A2E35;-webkit-font-smoothing:antialiased}
+img,video{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+:root{
+  --dark:#081C24;--dark-2:#0D2830;
+  --teal:#50A5AD;--teal-dark:#3A8A93;--teal-light:#7ECCD4;
+  --sage:#8EC4A8;--slate:#5B787E;
+  --orange:#D8691C;--orange-light:#F0915A;
+  --white:#FFFFFF;--off-white:#F7F9F8;
+  --light-teal:#EBF6F7;--mid-teal:#D4EDEF;--light-sage:#EDF5F0;--mid-sage:#D8EDDF;
+  --text-h:#1A2E35;--text-b:#4A6068;--text-m:#7A9AA2;
+  --ease:cubic-bezier(.42,0,.18,1);
+}
+
+/* SCROLL-REVEAL */
+.rev{opacity:1;transform:translateY(28px);transition:opacity .6s var(--ease),transform .75s var(--ease)}
+.rev-l{opacity:1;transform:translateX(-36px);transition:opacity .6s var(--ease),transform .75s var(--ease)}
+.rev-r{opacity:1;transform:translateX(36px);transition:opacity .6s var(--ease),transform .75s var(--ease)}
+.rev.in,.rev-l.in,.rev-r.in{opacity:1;transform:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(255,255,255,0);border-bottom:1px solid transparent;transition:background .4s,border-color .4s}
+.nav.scrolled{background:rgba(255,255,255,.96);border-bottom-color:rgba(80,165,173,.12);backdrop-filter:blur(12px)}
+.nav-logo{display:flex;align-items:center;gap:11px;cursor:pointer}
+.nav-logo-mark svg{width:40px;height:40px}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1}
+.nav-logo-gme{font-size:20px;font-weight:800;letter-spacing:.15em;color:var(--teal)}
+.nav-logo-sub{font-size:7.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:2px}
+.nav.scrolled .nav-logo-sub{color:var(--slate)}
+.nav-links{display:flex;align-items:center;gap:36px}
+.nav-links a{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.82);transition:color .3s}
+.nav.scrolled .nav-links a{color:var(--slate)}
+.nav-links a:hover{color:var(--teal)}
+.nav-cta{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);border:1.5px solid var(--teal);padding:9px 22px;transition:background .3s,color .3s}
+.nav-cta:hover{background:var(--teal);color:#fff}
+
+/* HERO */
+.hero{
+  position:relative;height:100vh;min-height:640px;
+  display:flex;align-items:flex-end;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 25% 55%, rgba(80,165,173,.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 20%, rgba(142,196,168,.08) 0%, transparent 45%),
+    linear-gradient(160deg, #040E14 0%, #081C24 38%, #0D2C38 65%, #051820 100%);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;z-index:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2350A5AD' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero::after{
+  content:'';position:absolute;inset:0;z-index:0;
+  background:linear-gradient(105deg, transparent 40%, rgba(80,165,173,.04) 50%, transparent 60%);
+  animation:heroShimmer 8s ease-in-out infinite;
+}
+@keyframes heroShimmer{0%,100%{opacity:0;transform:translateX(-20%)}50%{opacity:1;transform:translateX(20%)}}
+.hero-vid{position:absolute;inset:0;z-index:1}
+.hero-vid video{width:100%;height:100%;object-fit:cover;opacity:.5}
+.hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(8,28,36,.90) 0%,rgba(8,28,36,.30) 50%,rgba(8,28,36,.15) 100%)}
+.hero-inner{position:relative;z-index:3;padding:0 72px 96px;max-width:860px}
+.hero-eyebrow{font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--teal);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.hero-eyebrow::before{content:'';display:block;width:36px;height:1.5px;background:var(--teal)}
+.hero-h1{font-size:clamp(42px,6vw,80px);font-weight:200;color:#fff;line-height:1.1;letter-spacing:-.01em;margin-bottom:28px}
+.hero-h1 strong{font-weight:700;color:var(--teal-light)}
+.hero-sub{font-size:clamp(14px,1.6vw,17px);font-weight:300;color:rgba(255,255,255,.70);line-height:1.8;max-width:520px;margin-bottom:48px}
+.hero-actions{display:flex;gap:20px;align-items:center}
+.btn-primary{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:16px 38px;background:var(--teal);color:#fff;transition:background .3s}
+.btn-primary:hover{background:var(--teal-dark)}
+.btn-ghost{font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:10px;transition:color .3s}
+.btn-ghost:hover{color:#fff}
+.btn-ghost svg{transition:transform .3s}
+.btn-ghost:hover svg{transform:translateX(4px)}
+.hero-scroll{position:absolute;bottom:36px;right:72px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px}
+.hero-scroll span{font-size:8px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.35);writing-mode:vertical-rl}
+.scroll-line{width:1px;height:52px;background:linear-gradient(to bottom,rgba(255,255,255,.08),rgba(80,165,173,.5));animation:scrollPulse 2.2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.4;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* HERITAGE BAND */
+.heritage{background:var(--light-teal);border-top:1px solid rgba(80,165,173,.15);border-bottom:1px solid rgba(80,165,173,.15);padding:0;overflow:hidden;height:54px;display:flex;align-items:center}
+.ticker-wrap{display:flex;white-space:nowrap;animation:ticker 32s linear infinite}
+.ticker-item{display:inline-flex;align-items:center;gap:20px;padding:0 40px;font-size:9.5px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--slate)}
+.ticker-sep{color:var(--teal);opacity:.6;font-size:14px}
+.ticker-hi{color:var(--teal);font-weight:800}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.heritage-line{position:relative;height:3px;background:linear-gradient(to right,transparent 0%,var(--orange) 30%,var(--orange-light) 60%,transparent 100%);overflow:hidden}
+.heritage-line::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent,rgba(255,255,255,.4),transparent);animation:lineSheen 3.5s ease-in-out infinite}
+@keyframes lineSheen{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
+
+/* NEWS / INSIGHTS */
+.news{background:var(--off-white);border-top:1px solid rgba(80,165,173,.10);padding:100px 72px}
+.news-header{text-align:center;margin-bottom:64px}
+.news-tag{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px}
+.news-tag::before,.news-tag::after{content:'';display:block;width:24px;height:1.5px;background:var(--teal)}
+.news-h2{font-size:clamp(28px,3.2vw,42px);font-weight:200;color:var(--text-h);line-height:1.2;letter-spacing:-.01em;margin-bottom:12px}
+.news-h2 strong{font-weight:700}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1280px;margin:0 auto}
+.news-card{background:var(--white);border:1px solid rgba(80,165,173,.12);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .35s,border-color .35s,transform .35s}
+.news-card:hover{box-shadow:0 16px 48px rgba(80,165,173,.14);border-color:rgba(80,165,173,.25);transform:translateY(-3px)}
+.news-card-top{height:4px;background:linear-gradient(to right,var(--orange),var(--orange-light))}
+.news-card-body{padding:36px 32px;flex:1;display:flex;flex-direction:column}
+.news-card-cat{font-size:8.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+.news-card-date{font-size:9px;font-weight:500;letter-spacing:.1em;color:var(--text-m);margin-bottom:10px}
+.news-card-title{font-size:16px;font-weight:700;color:var(--text-h);line-height:1.4;letter-spacing:.01em;margin-bottom:16px}
+.news-card-excerpt{font-size:13px;font-weight:300;color:var(--text-b);line-height:1.85;flex:1}
+.news-card-link{display:inline-flex;align-items:center;gap:8px;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-top:24px;transition:gap .3s}
+.news-card:hover .news-card-link{gap:14px}
+
+/* ABOUT */
+.about{background:var(--white);border-top:1px solid rgba(80,165,173,.10);padding:120px 72px}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1280px;margin:0 auto}
+.about-tag{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.about-tag::before{content:'';display:block;width:28px;height:1.5px;background:var(--teal)}
+.about-h2{font-size:clamp(32px,3.8vw,52px);font-weight:200;color:var(--text-h);line-height:1.15;letter-spacing:-.01em;margin-bottom:28px}
+.about-h2 strong{font-weight:700;color:var(--teal)}
+.about-body{font-size:15px;font-weight:300;line-height:1.9;color:var(--text-b);margin-bottom:36px}
+.about-body p+p{margin-top:16px}
+.about-cred{display:flex;gap:32px;padding-top:32px;border-top:1px solid rgba(80,165,173,.12)}
+.cred-item{display:flex;flex-direction:column;gap:4px}
+.cred-val{font-size:24px;font-weight:800;color:var(--teal);letter-spacing:.02em}
+.cred-lbl{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-m)}
+.about-visual{position:relative}
+.about-frame{position:relative;background:var(--light-teal);border:1px solid rgba(80,165,173,.20);overflow:hidden;aspect-ratio:4/5}
+.about-frame-accent{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--teal),var(--sage))}
+.about-ship-svg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:48px}
+.about-badge{position:absolute;bottom:-24px;right:28px;background:var(--white);border:1px solid rgba(80,165,173,.18);padding:20px 28px;box-shadow:0 8px 40px rgba(80,165,173,.10)}
+.badge-year{font-size:32px;font-weight:800;color:var(--teal);line-height:1}
+.badge-lbl{font-size:8.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text-m);margin-top:4px}
+
+/* OPERATIONS GALLERY */
+.ops-gallery{background:var(--dark);padding:0;overflow:hidden}
+.ops-grid{display:grid;grid-template-columns:1fr 1.45fr 1fr;grid-template-rows:360px 360px;gap:3px}
+.ops-cell{position:relative;overflow:hidden;background:var(--dark-2)}
+.ops-cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s var(--ease),filter .7s;filter:brightness(.6) contrast(1.08) saturate(.8)}
+.ops-cell:hover img{transform:scale(1.05);filter:brightness(.72) contrast(1.06) saturate(.88)}
+.ops-cell-center{grid-row:1/3}
+.ops-cell::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,28,38,.18) 0%,rgba(80,165,173,.07) 35%,rgba(4,18,28,.88) 100%);pointer-events:none;transition:opacity .5s}
+.ops-cell:hover::after{opacity:.85}
+.ops-cell-sign{background:linear-gradient(135deg,#0a1e28 0%,#0d2830 100%)}
+.ops-cell-hull{background:linear-gradient(160deg,#0a1e28 0%,#0e2c3a 50%,#081c24 100%)}
+.ops-cell-bow{background:linear-gradient(135deg,#081c24 0%,#0d2830 100%)}
+.ops-cell-prop{background:linear-gradient(135deg,#0a2230 0%,#081c24 100%)}
+.ops-cell-accent{position:absolute;top:0;left:0;width:36px;height:2px;background:var(--teal);z-index:4;opacity:.8}
+.ops-overlay{position:absolute;bottom:0;left:0;right:0;padding:20px 24px 28px;z-index:4;transform:translateY(4px);transition:transform .45s var(--ease)}
+.ops-cell:hover .ops-overlay{transform:translateY(0)}
+.ops-overlay-tag{font-size:7px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.ops-overlay-tag::before{content:'';display:block;width:16px;height:1.5px;background:var(--teal);flex-shrink:0}
+.ops-overlay-title{font-size:17px;font-weight:300;color:#fff;margin:0 0 10px;letter-spacing:-.01em;line-height:1.2}
+.ops-overlay-desc{font-size:12px;line-height:1.55;color:rgba(255,255,255,.6);margin:0;opacity:0;transform:translateY(8px);transition:opacity .4s .08s var(--ease),transform .4s .08s var(--ease)}
+.ops-cell:hover .ops-overlay-desc{opacity:1;transform:translateY(0)}
+.ops-cell-center .ops-overlay{padding:24px 28px 36px}
+.ops-cell-center .ops-overlay-title{font-size:22px}
+.ops-cell-center .ops-overlay-desc{font-size:13px}
+.ops-header{background:var(--dark);padding:72px 72px 40px;text-align:center;border-top:1px solid rgba(80,165,173,.10)}
+.ops-tag{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:18px}
+.ops-tag::before,.ops-tag::after{content:'';display:block;width:24px;height:1.5px;background:var(--teal)}
+.ops-h2{font-size:clamp(26px,3vw,40px);font-weight:200;color:#fff;line-height:1.2;letter-spacing:-.01em}
+.ops-h2 strong{font-weight:700;color:var(--teal-light)}
+
+/* METRICS */
+.metrics{background:var(--mid-teal);border-top:1px solid rgba(80,165,173,.20);padding:80px 72px}
+.metrics-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(80,165,173,.22);max-width:1280px;margin:0 auto}
+.metric-cell{background:var(--light-teal);padding:56px 40px;position:relative;overflow:hidden;transition:background .3s,box-shadow .3s}
+.metric-cell::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--teal),var(--sage));transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.metric-cell:hover{background:var(--white);box-shadow:0 8px 32px rgba(80,165,173,.14)}
+.metric-cell:hover::before{transform:scaleX(1)}
+.metric-val{font-size:clamp(40px,5vw,64px);font-weight:800;color:var(--teal);line-height:1;letter-spacing:-.02em;margin-bottom:12px}
+.metric-val .cnt{display:inline-block}
+.metric-unit{font-size:.55em;font-weight:300;vertical-align:top;margin-top:.2em}
+.metric-lbl{font-size:9.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text-m)}
+
+/* CAPABILITIES */
+.capabilities{background:var(--white);border-top:1px solid rgba(80,165,173,.08);padding:100px 0 0}
+.cap-header{text-align:center;padding:0 72px 72px;max-width:720px;margin:0 auto;position:relative}
+.cap-header::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:60px;height:2px;background:linear-gradient(to right,var(--teal),var(--sage))}
+.cap-tag{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px}
+.cap-tag::before,.cap-tag::after{content:'';display:block;width:24px;height:1.5px;background:var(--teal)}
+.cap-h2{font-size:clamp(30px,3.5vw,46px);font-weight:200;color:var(--text-h);line-height:1.2;letter-spacing:-.01em;margin-bottom:16px}
+.cap-h2 strong{font-weight:700}
+.cap-sub{font-size:14px;font-weight:300;color:var(--text-b);line-height:1.8}
+.cap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(80,165,173,.14);border-top:1px solid rgba(80,165,173,.14)}
+.cap-card{background:var(--light-teal);padding:52px 36px;min-height:400px;position:relative;overflow:hidden;display:flex;flex-direction:column;transition:background .35s,box-shadow .35s}
+.cap-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,var(--teal),var(--sage));transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease)}
+.cap-card:hover{background:var(--white);box-shadow:0 12px 40px rgba(80,165,173,.12)}
+.cap-card:hover::before{transform:scaleX(1)}
+.cap-num{font-size:clamp(72px,7vw,96px);font-weight:800;color:rgba(80,165,173,.07);line-height:1;letter-spacing:-.04em;margin-bottom:24px;user-select:none}
+.cap-icon{width:44px;height:44px;margin-bottom:24px;color:var(--teal)}
+.cap-card-title{font-size:17px;font-weight:700;color:var(--text-h);letter-spacing:.02em;margin-bottom:16px}
+.cap-card p{font-size:13.5px;font-weight:300;color:var(--text-b);line-height:1.85;flex:1}
+.cap-card-link{display:inline-flex;align-items:center;gap:8px;font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-top:32px;transition:gap .3s}
+.cap-card:hover .cap-card-link{gap:14px}
+
+/* NETWORK MAP */
+.network-map{background:var(--dark);padding:100px 0 0}
+.map-header{text-align:center;padding:0 72px 64px}
+.map-tag{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px}
+.map-tag::before,.map-tag::after{content:'';display:block;width:24px;height:1.5px;background:var(--teal)}
+.map-h2{font-size:clamp(30px,3.5vw,46px);font-weight:200;color:#fff;line-height:1.2;letter-spacing:-.01em;margin-bottom:16px}
+.map-h2 strong{font-weight:700;color:var(--teal-light)}
+.map-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,.50);line-height:1.8}
+.gme-map{position:relative;border-top:1px solid rgba(80,165,173,.12)}
+.gme-map-label{position:absolute;top:16px;left:20px;z-index:4;font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(80,165,173,.75)}
+.gme-map-legend{position:absolute;top:14px;right:20px;z-index:4;display:flex;gap:18px}
+.gme-legend-item{display:flex;align-items:center;gap:7px;font-size:8.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38)}
+.map-stats-strip{position:absolute;bottom:0;left:0;right:0;z-index:5;display:flex;align-items:center;justify-content:center;background:linear-gradient(to right,rgba(4,12,18,.96),rgba(8,28,36,.96),rgba(4,12,18,.96));border-top:1px solid rgba(80,165,173,.18);padding:14px 24px}
+.mss-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:0 28px}
+.mss-val{font-size:clamp(15px,2.2vw,20px);font-weight:800;color:var(--teal);letter-spacing:.04em}
+.mss-lbl{font-size:clamp(7px,1vw,8.5px);font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.38);white-space:nowrap}
+.mss-div{width:1px;height:28px;background:rgba(80,165,173,.18);flex-shrink:0}
+.map-tooltip{position:absolute;z-index:20;pointer-events:none;background:rgba(6,18,24,.92);border:1px solid rgba(80,165,173,.45);padding:10px 15px;backdrop-filter:blur(8px);transform:translateY(-100%)}
+.mtt-type{font-size:7.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(80,165,173,.65);margin-bottom:4px}
+.mtt-name{font-size:11px;font-weight:600;color:#fff;letter-spacing:.05em}
+.map-port,.map-hub{cursor:pointer}
+.arc-flow{stroke-dasharray:8 5;animation:arcFlow 5s linear infinite}
+@keyframes arcFlow{to{stroke-dashoffset:-104}}
+#gmeMapSvg{display:block;width:100%;height:auto}
+
+/* TESTIMONIALS */
+.testimonials{background:var(--mid-teal);padding:100px 72px;border-top:1px solid rgba(80,165,173,.18)}
+.test-inner{max-width:960px;margin:0 auto;text-align:center}
+.test-tag{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal-dark);display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:56px}
+.test-tag::before,.test-tag::after{content:'';display:block;width:24px;height:1.5px;background:var(--teal-dark)}
+.test-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;text-align:left}
+.test-card{background:var(--white);border:1px solid rgba(80,165,173,.12);border-top:3px solid var(--teal);padding:40px;box-shadow:0 4px 24px rgba(80,165,173,.08)}
+.test-quote{font-size:15px;font-weight:300;color:var(--text-b);line-height:1.9;margin-bottom:28px;position:relative;padding-top:20px}
+.test-quote::before{content:'"';position:absolute;top:-12px;left:0;font-size:64px;font-weight:800;line-height:1;color:var(--teal);opacity:.25}
+.test-author{display:flex;align-items:center;gap:16px}
+.test-avatar{width:44px;height:44px;border-radius:50%;background:var(--light-teal);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--teal);flex-shrink:0}
+.test-name{font-size:12px;font-weight:700;color:var(--text-h);letter-spacing:.04em}
+.test-co{font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text-m);margin-top:2px}
+
+/* ETHOS */
+.ethos{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 70% 40%, rgba(80,165,173,.12) 0%, transparent 55%),
+    linear-gradient(135deg, #040E14 0%, #081C24 40%, #0D2C38 70%, #081C24 100%);
+}
+.ethos::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2350A5AD' fill-opacity='0.025'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.ethos-vid{position:absolute;inset:0;z-index:1}
+.ethos-vid video{width:100%;height:100%;object-fit:cover;opacity:.28}
+.ethos-vid-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(135deg,rgba(8,28,36,.92) 0%,rgba(8,28,36,.72) 60%,rgba(13,40,48,.86) 100%)}
+.ethos-inner{position:relative;z-index:3;padding:120px 72px;max-width:1280px;margin:0 auto}
+.ethos-tag{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.ethos-tag::before{content:'';display:block;width:28px;height:1.5px;background:var(--teal)}
+.ethos-h2{font-size:clamp(32px,3.8vw,52px);font-weight:200;color:#fff;line-height:1.15;letter-spacing:-.01em;max-width:600px;margin-bottom:72px}
+.ethos-h2 strong{font-weight:700;color:var(--teal-light)}
+.ethos-values{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(80,165,173,.12)}
+.ethos-val{background:rgba(255,255,255,.03);padding:48px 36px;border-top:2px solid transparent;transition:background .35s,border-color .35s}
+.ethos-val:hover{background:rgba(255,255,255,.06);border-top-color:var(--teal)}
+.ethos-val-icon{width:36px;height:36px;color:var(--teal);margin-bottom:20px}
+.ethos-val-name{font-size:14px;font-weight:700;color:#fff;letter-spacing:.04em;margin-bottom:12px}
+.ethos-val p{font-size:13px;font-weight:300;color:rgba(255,255,255,.50);line-height:1.8}
+
+/* SUSTAINABILITY */
+.sustain{background:var(--mid-sage);border-top:1px solid rgba(142,196,168,.22);padding:100px 72px}
+.sustain-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1280px;margin:0 auto}
+.sustain-tag{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--sage);display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.sustain-tag::before{content:'';display:block;width:28px;height:1.5px;background:var(--sage)}
+.sustain-h2{font-size:clamp(28px,3.2vw,44px);font-weight:200;color:var(--text-h);line-height:1.2;letter-spacing:-.01em;margin-bottom:24px}
+.sustain-h2 strong{font-weight:700;color:var(--slate)}
+.sustain-body{font-size:14px;font-weight:300;color:var(--text-b);line-height:1.9;margin-bottom:36px}
+.sustain-points{display:flex;flex-direction:column;gap:16px}
+.sustain-pt{display:flex;align-items:flex-start;gap:16px;font-size:13.5px;font-weight:400;color:var(--text-b);line-height:1.7}
+.sustain-pt-dot{width:6px;height:6px;border-radius:50%;background:var(--sage);flex-shrink:0;margin-top:7px}
+.sustain-visual{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sustain-stat{background:var(--white);border:1px solid rgba(142,196,168,.25);border-left:3px solid var(--sage);padding:28px;box-shadow:0 2px 16px rgba(142,196,168,.10)}
+.sustain-stat-val{font-size:28px;font-weight:800;color:var(--slate);letter-spacing:-.01em}
+.sustain-stat-lbl{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--text-m);margin-top:6px}
+
+/* CONTACT */
+.contact{background:var(--light-teal);border-top:1px solid rgba(80,165,173,.15);padding:100px 72px}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1280px;margin:0 auto}
+.contact-tag{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.contact-tag::before{content:'';display:block;width:28px;height:1.5px;background:var(--teal)}
+.contact-h2{font-size:clamp(28px,3.2vw,44px);font-weight:200;color:var(--text-h);line-height:1.2;letter-spacing:-.01em;margin-bottom:24px}
+.contact-h2 strong{font-weight:700}
+.contact-body{font-size:14px;font-weight:300;color:var(--text-b);line-height:1.9;margin-bottom:40px}
+.contact-offices{display:flex;flex-direction:column;gap:24px}
+.contact-office{padding:24px 28px;background:var(--white);border:1px solid rgba(80,165,173,.15);border-left:3px solid var(--teal);box-shadow:0 2px 12px rgba(80,165,173,.08)}
+.contact-office-city{font-size:13px;font-weight:700;color:var(--text-h);letter-spacing:.06em;margin-bottom:4px}
+.contact-office p{font-size:12.5px;font-weight:300;color:var(--text-b);line-height:1.7}
+.contact-office a{color:var(--teal);font-weight:500}
+.contact-form{display:flex;flex-direction:column;gap:16px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-field{display:flex;flex-direction:column;gap:6px}
+.form-field label{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--slate)}
+.form-field input,.form-field textarea{font-family:'Raleway',sans-serif;font-size:13.5px;font-weight:400;color:var(--text-h);background:var(--white);border:1px solid rgba(80,165,173,.20);padding:13px 16px;transition:border-color .3s,background .3s;outline:none;resize:none}
+.form-field input:focus,.form-field textarea:focus{border-color:var(--teal);background:var(--light-teal)}
+.form-field textarea{min-height:120px}
+.form-submit{font-family:'Raleway',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;background:var(--teal);color:#fff;padding:16px 40px;border:none;cursor:pointer;align-self:flex-start;transition:background .3s}
+.form-submit:hover{background:var(--teal-dark)}
+
+/* FOOTER */
+.footer{background:var(--dark);border-top:1px solid rgba(80,165,173,.12);padding:72px 72px 40px}
+.footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:48px;margin-bottom:64px}
+.footer-logo{display:flex;align-items:center;gap:11px;margin-bottom:20px}
+.footer-logo-gme{font-size:18px;font-weight:800;letter-spacing:.15em;color:var(--teal)}
+.footer-logo-sub{font-size:7px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:2px}
+.footer-desc{font-size:12.5px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.9;max-width:260px;margin-bottom:28px}
+.footer-reg{font-size:9px;font-weight:500;letter-spacing:.1em;color:rgba(255,255,255,.22)}
+.footer-col-title{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--teal);margin-bottom:20px}
+.footer-col ul{display:flex;flex-direction:column;gap:12px}
+.footer-col li a{font-size:12.5px;font-weight:300;color:rgba(255,255,255,.48);transition:color .3s}
+.footer-col li a:hover{color:var(--teal)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:32px;border-top:1px solid rgba(255,255,255,.06)}
+.footer-copy{font-size:10.5px;font-weight:300;color:rgba(255,255,255,.28);letter-spacing:.06em}
+.footer-legal{display:flex;gap:28px}
+.footer-legal a{font-size:10px;font-weight:400;color:rgba(255,255,255,.28);letter-spacing:.06em;transition:color .3s;cursor:pointer}
+.footer-legal a:hover{color:var(--teal)}
+
+/* THOUGHT LEADERSHIP EXTRAS */
+.news-intro{font-size:15px;font-weight:300;color:var(--text-b);max-width:580px;margin:12px auto 0;text-align:center;line-height:1.8}
+.news-featured{background:var(--dark);color:#fff;padding:56px 64px;margin:56px auto 0;max-width:1200px;position:relative;overflow:hidden}
+.news-featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--sage))}
+.news-feat-label{font-size:8.5px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+.news-feat-cat{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px}
+.news-feat-date{font-size:10px;font-weight:400;color:rgba(255,255,255,.3);margin-bottom:20px}
+.news-feat-title{font-size:clamp(20px,2.4vw,28px);font-weight:300;line-height:1.35;color:#fff;margin-bottom:20px;max-width:780px}
+.news-feat-body{font-size:14px;font-weight:300;color:rgba(255,255,255,.58);line-height:1.9;max-width:740px;margin-bottom:32px}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1280px;margin:56px auto 0}
+.news-footer{text-align:center;padding:56px 0 0}
+.news-footer .btn-primary{display:inline-block}
+
+/* T&Cs MODAL */
+.tc-modal{display:none;position:fixed;inset:0;z-index:500;overflow-y:auto;padding:48px 24px}
+.tc-modal.open{display:block}
+.tc-backdrop{position:fixed;inset:0;background:rgba(4,14,20,.88);backdrop-filter:blur(8px)}
+.tc-box{position:relative;z-index:1;max-width:860px;margin:0 auto;background:#fff;padding:64px 72px 72px}
+.tc-close{position:absolute;top:24px;right:28px;background:none;border:none;cursor:pointer;font-size:24px;color:var(--slate);line-height:1}
+.tc-close:hover{color:var(--dark)}
+.tc-eyebrow{font-size:9px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+.tc-title{font-size:clamp(24px,3vw,36px);font-weight:200;color:var(--dark);margin-bottom:8px}
+.tc-title strong{font-weight:700}
+.tc-updated{font-size:11px;color:var(--text-m);margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid rgba(80,165,173,.15)}
+.tc-section{margin-bottom:40px}
+.tc-section-num{font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.tc-section h3{font-size:15px;font-weight:600;color:var(--dark);margin-bottom:12px}
+.tc-section p,.tc-section li{font-size:13.5px;font-weight:300;color:var(--text-b);line-height:1.9;margin-bottom:8px}
+.tc-section ul{padding-left:20px}
+.tc-section ul li{list-style:disc}
+.tc-divider{height:1px;background:rgba(80,165,173,.1);margin:0 0 40px}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-logo">
+    <div class="nav-logo-mark">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+        <defs>
+          <radialGradient id="lgA" cx="38%" cy="62%" r="58%">
+            <stop offset="0%" stop-color="#8EC4A8"/>
+            <stop offset="55%" stop-color="#50A5AD"/>
+            <stop offset="100%" stop-color="#3A8A93"/>
+          </radialGradient>
+          <clipPath id="lgClip"><circle cx="20" cy="20" r="18"/></clipPath>
+        </defs>
+        <circle cx="20" cy="20" r="18" fill="url(#lgA)"/>
+        <path d="M25,3 Q36,8 38,20 Q38,30 30,36 L23,36 Q33,28 32,18 Q30,9 20,5Z" fill="#7ECCD4" opacity=".65" clip-path="url(#lgClip)"/>
+        <path d="M3,22 Q12,18 22,20 Q30,22 37,18" fill="none" stroke="#0D3040" stroke-width="2.8" opacity=".4" clip-path="url(#lgClip)"/>
+        <path d="M5,29 Q14,25 24,27 Q32,29 37,25" fill="none" stroke="#0D3040" stroke-width="2.2" opacity=".30" clip-path="url(#lgClip)"/>
+      </svg>
+    </div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-gme">GME</span>
+      <span class="nav-logo-sub">Global Marine Energy</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#capabilities">Services</a></li>
+    <li><a href="#network">Network</a></li>
+    <li><a href="#news">Insights &amp; Research</a></li>
+    <li><a href="#ethos">Values</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-vid">
+    <video autoplay muted loop playsinline>
+      <source src="ships.mp4" type="video/mp4"/>
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Global Marine Energy — Est. 2024</p>
+    <h1 class="hero-h1">Powering the<br/><strong>World's Oceans.</strong><br/>Delivering the Future.</h1>
+    <p class="hero-sub">A new era in marine fuel supply. GME delivers HSFO, VLSFO and Marine Gasoil to the world's major ports — with uncompromising quality assurance, competitive pricing and round-the-clock operations.</p>
+    <div class="hero-actions">
+      <a href="#capabilities" class="btn-primary">Our Services</a>
+      <a href="#network" class="btn-ghost">Explore Network <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- HERITAGE BAND -->
+<div class="heritage-line" aria-hidden="true"></div>
+<div class="heritage" aria-hidden="true">
+  <div class="ticker-wrap">
+    <span class="ticker-item"><span><span class="ticker-hi">Fuel Oil</span> — HSFO &amp; VLSFO</span><span class="ticker-sep">·</span><span><span class="ticker-hi">Marine Gasoil</span></span><span class="ticker-sep">·</span><span>Physical Supply</span><span class="ticker-sep">·</span><span>Global Operations</span><span class="ticker-sep">·</span><span>Dubai Headquarters</span><span class="ticker-sep">·</span><span>Singapore · London · Geneva</span><span class="ticker-sep">·</span><span>MARPOL Compliant</span><span class="ticker-sep">·</span><span>24/7 Supply Chain</span><span class="ticker-sep">·</span><span>ISO 8217 Certified</span><span class="ticker-sep">·</span></span>
+    <span class="ticker-item"><span><span class="ticker-hi">Fuel Oil</span> — HSFO &amp; VLSFO</span><span class="ticker-sep">·</span><span><span class="ticker-hi">Marine Gasoil</span></span><span class="ticker-sep">·</span><span>Physical Supply</span><span class="ticker-sep">·</span><span>Global Operations</span><span class="ticker-sep">·</span><span>Dubai Headquarters</span><span class="ticker-sep">·</span><span>Singapore · London · Geneva</span><span class="ticker-sep">·</span><span>MARPOL Compliant</span><span class="ticker-sep">·</span><span>24/7 Supply Chain</span><span class="ticker-sep">·</span><span>ISO 8217 Certified</span><span class="ticker-sep">·</span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="rev-l">
+      <p class="about-tag">Who We Are</p>
+      <h2 class="about-h2">Engineering Excellence.<br/><strong>Global Reach.</strong></h2>
+      <div class="about-body">
+        <p>GME — Global Marine Energy — is built on deep roots in the marine fuels industry: years of operational experience, long-standing supplier relationships, and a track record of delivery across the world's most strategic ports.</p>
+        <p>We supply High Sulphur Fuel Oil (HSFO), Very Low Sulphur Fuel Oil (VLSFO) and Marine Gasoil (MGO) — the core products that keep global fleets moving. No compromises, no complexity. Just reliable physical supply, priced competitively and documented correctly.</p>
+        <p>Our team operates with the agility of a boutique and the reach of an international house — delivering fuel where it's needed, when it's needed, every time.</p>
+      </div>
+      <div class="about-cred">
+        <div class="cred-item"><span class="cred-val">20+</span><span class="cred-lbl">Years Heritage</span></div>
+        <div class="cred-item"><span class="cred-val">30+</span><span class="cred-lbl">Global Ports</span></div>
+        <div class="cred-item"><span class="cred-val">100%</span><span class="cred-lbl">Compliant Supply</span></div>
+      </div>
+    </div>
+    <div class="rev-r">
+      <div class="about-visual">
+        <div class="about-frame">
+          <div class="about-frame-accent"></div>
+          <div class="about-ship-svg">
+            <svg viewBox="0 0 360 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;opacity:.85">
+              <defs>
+                <linearGradient id="hullFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#50A5AD" stop-opacity=".13"/><stop offset="100%" stop-color="#50A5AD" stop-opacity=".04"/></linearGradient>
+                <linearGradient id="superFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#50A5AD" stop-opacity=".10"/><stop offset="100%" stop-color="#50A5AD" stop-opacity=".03"/></linearGradient>
+                <linearGradient id="waterFade" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#50A5AD" stop-opacity="0"/><stop offset="40%" stop-color="#50A5AD" stop-opacity=".28"/><stop offset="60%" stop-color="#50A5AD" stop-opacity=".28"/><stop offset="100%" stop-color="#50A5AD" stop-opacity="0"/></linearGradient>
+              </defs>
+              <path d="M0,198 Q45,194 90,198 Q135,202 180,198 Q225,194 270,198 Q315,202 360,198" stroke="#50A5AD" stroke-width=".9" stroke-opacity=".22" fill="none"/>
+              <path d="M0,205 Q60,201 120,205 Q180,209 240,205 Q300,201 360,205" stroke="#50A5AD" stroke-width=".7" stroke-opacity=".13" fill="none"/>
+              <rect x="0" y="196" width="360" height="2" fill="url(#waterFade)"/>
+              <path d="M28,132 L28,186 Q70,196 180,196 Q272,196 318,190 Q338,184 346,172 L348,152 Q344,130 334,126 L28,126 Z" stroke="#50A5AD" stroke-width="1.5" fill="url(#hullFill)"/>
+              <path d="M30,178 Q140,182 280,178 Q310,176 328,170 Q338,166 344,160" stroke="#50A5AD" stroke-width=".7" stroke-opacity=".30" stroke-dasharray="5 3" fill="none"/>
+              <line x1="28" y1="126" x2="334" y2="126" stroke="#50A5AD" stroke-width=".9" stroke-opacity=".45"/>
+              <rect x="30" y="82" width="96" height="44" stroke="#50A5AD" stroke-width="1.3" fill="url(#superFill)"/>
+              <rect x="36" y="64" width="78" height="20" stroke="#50A5AD" stroke-width="1.15" fill="rgba(80,165,173,.08)"/>
+              <rect x="44" y="50" width="60" height="16" stroke="#50A5AD" stroke-width="1.1" fill="rgba(80,165,173,.10)"/>
+              <rect x="52" y="38" width="44" height="13" stroke="#8EC4A8" stroke-width="1.0" fill="rgba(142,196,168,.07)"/>
+              <path d="M62,22 L62,38 L82,38 L82,22 Q78,18 72,17 Q66,18 62,22Z" stroke="#8EC4A8" stroke-width="1.2" fill="rgba(142,196,168,.09)"/>
+              <line x1="74" y1="17" x2="74" y2="2" stroke="#8EC4A8" stroke-width="1.0"/>
+              <line x1="62" y1="9" x2="86" y2="9" stroke="#8EC4A8" stroke-width=".7" stroke-opacity=".55"/>
+              <rect x="130" y="121" width="196" height="5" rx="2.5" stroke="#50A5AD" stroke-width=".9" stroke-opacity=".45" fill="rgba(80,165,173,.05)"/>
+              <rect x="192" y="107" width="40" height="18" rx="1.5" stroke="#50A5AD" stroke-width="1.1" fill="rgba(80,165,173,.10)"/>
+              <circle cx="200" cy="116" r="3.5" stroke="#50A5AD" stroke-width=".9" fill="rgba(80,165,173,.12)"/>
+              <circle cx="212" cy="116" r="3.5" stroke="#50A5AD" stroke-width=".9" fill="rgba(80,165,173,.12)"/>
+              <circle cx="224" cy="116" r="3.5" stroke="#50A5AD" stroke-width=".9" fill="rgba(80,165,173,.12)"/>
+            </svg>
+          </div>
+        </div>
+        <div class="about-badge"><div class="badge-year">2024</div><div class="badge-lbl">GME Founded</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATIONS GALLERY -->
+<section class="ops-gallery" id="operations">
+  <div class="ops-header rev">
+    <div class="ops-tag">On The Water</div>
+    <h2 class="ops-h2">Precision at <strong>every port call</strong></h2>
+  </div>
+  <div class="ops-grid">
+    <div class="ops-cell ops-cell-sign">
+      <img src="op-sign.jpg" alt="Vessel access at port">
+      <div class="ops-cell-accent"></div>
+      <div class="ops-overlay">
+        <div class="ops-overlay-tag">Port Operations</div>
+        <h3 class="ops-overlay-title">Vessel Access</h3>
+        <p class="ops-overlay-desc">Seamless port call coordination and berth management at every major bunkering terminal worldwide.</p>
+      </div>
+    </div>
+    <div class="ops-cell ops-cell-center ops-cell-hull">
+      <img src="op-hull.gif" alt="Hull operations">
+      <div class="ops-cell-accent"></div>
+      <div class="ops-overlay">
+        <div class="ops-overlay-tag">Marine Services</div>
+        <h3 class="ops-overlay-title">In-Water Operations</h3>
+        <p class="ops-overlay-desc">Full-service hull inspection, underwater maintenance coordination, and technical support for tankers and bulk carriers operating across the Arabian Gulf and beyond.</p>
+      </div>
+    </div>
+    <div class="ops-cell ops-cell-bow">
+      <img src="op-bow.jpg" alt="Fleet maintenance">
+      <div class="ops-cell-accent"></div>
+      <div class="ops-overlay">
+        <div class="ops-overlay-tag">Engineering</div>
+        <h3 class="ops-overlay-title">Fleet Readiness</h3>
+        <p class="ops-overlay-desc">Scheduled maintenance programmes and emergency response support delivered at 50+ global ports.</p>
+      </div>
+    </div>
+    <div class="ops-cell ops-cell-prop">
+      <img src="op-prop.jpg" alt="Propulsion systems">
+      <div class="ops-cell-accent"></div>
+      <div class="ops-overlay">
+        <div class="ops-overlay-tag">Technical</div>
+        <h3 class="ops-overlay-title">Propulsion Systems</h3>
+        <p class="ops-overlay-desc">Twin-thruster and main engine support for deep-draught vessels, coordinated with our marine engineering partners.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section class="metrics">
+  <div class="metrics-inner">
+    <div class="metric-cell rev"><div class="metric-val"><span class="cnt" data-target="30">0</span><span class="metric-unit">+</span></div><div class="metric-lbl">Partner Ports Worldwide</div></div>
+    <div class="metric-cell rev" style="transition-delay:.1s"><div class="metric-val"><span class="cnt" data-target="25">0</span><span class="metric-unit">+</span></div><div class="metric-lbl">Active Trade Routes</div></div>
+    <div class="metric-cell rev" style="transition-delay:.2s"><div class="metric-val"><span class="cnt" data-target="20">0</span><span class="metric-unit">+</span></div><div class="metric-lbl">Years Combined Expertise</div></div>
+    <div class="metric-cell rev" style="transition-delay:.3s"><div class="metric-val"><span class="cnt" data-target="100">0</span><span class="metric-unit">%</span></div><div class="metric-lbl">MARPOL Compliant Supply</div></div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section class="capabilities" id="capabilities">
+  <div class="cap-header rev">
+    <p class="cap-tag">What We Do</p>
+    <h2 class="cap-h2">Reliable Supply.<br/><strong>Seamless Delivery.</strong></h2>
+    <p class="cap-sub">Four core pillars that define GME's operational excellence — from the moment fuel is ordered to the moment it's on board.</p>
+  </div>
+  <div class="cap-grid">
+    <div class="cap-card rev">
+      <div class="cap-num">01</div>
+      <svg class="cap-icon" viewBox="0 0 44 44" fill="none"><path d="M6,32 L8,22 L14,18 L16,14 L38,14 L40,18 L42,28 L38,32Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="34" cy="32" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="14" cy="32" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M16,14 L18,8 L28,8 L30,14" stroke="currentColor" stroke-width="1.3"/></svg>
+      <div class="cap-card-title">Marine Bunkering</div>
+      <p>Physical supply of High Sulphur Fuel Oil (HSFO), Very Low Sulphur Fuel Oil (VLSFO) and Marine Gasoil (MGO) across all major bunkering hubs. Competitive pricing, reliable stems, full documentation — on schedule, every time.</p>
+      <span class="cap-card-link">Learn More <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+    </div>
+    <div class="cap-card rev" style="transition-delay:.1s">
+      <div class="cap-num">02</div>
+      <svg class="cap-icon" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="16" stroke="currentColor" stroke-width="1.5"/><path d="M22 6 Q30 14 30 22 Q30 30 22 38 Q14 30 14 22 Q14 14 22 6Z" stroke="currentColor" stroke-width="1.3"/><path d="M6 22 Q14 18 22 18 Q30 18 38 22" stroke="currentColor" stroke-width="1.3"/></svg>
+      <div class="cap-card-title">Global Port Coverage</div>
+      <p>Strategic presence across 30+ ports spanning the Middle East, Europe, Asia-Pacific, and the Americas. Wherever your vessel calls, GME can supply.</p>
+      <span class="cap-card-link">Explore Network <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+    </div>
+    <div class="cap-card rev" style="transition-delay:.2s">
+      <div class="cap-num">03</div>
+      <svg class="cap-icon" viewBox="0 0 44 44" fill="none"><path d="M22 4 L38 12 L38 28 L22 38 L6 28 L6 12 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M14 22 L20 28 L30 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="cap-card-title">Quality Assurance</div>
+      <p>Every stem backed by independent laboratory testing, MARPOL-compliant documentation and full chain-of-custody verification. Quality is non-negotiable.</p>
+      <span class="cap-card-link">Our Standards <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+    </div>
+    <div class="cap-card rev" style="transition-delay:.3s">
+      <div class="cap-num">04</div>
+      <svg class="cap-icon" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="16" stroke="currentColor" stroke-width="1.5"/><path d="M22 12 L22 22 L30 30" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="22" cy="22" r="2" fill="currentColor"/></svg>
+      <div class="cap-card-title">24/7 Operations</div>
+      <p>Round-the-clock supply chain coordination, vessel scheduling and responsive client support. Our operations team ensures your fleet never waits on fuel.</p>
+      <span class="cap-card-link">Contact Ops <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+    </div>
+  </div>
+</section>
+
+<!-- NETWORK MAP -->
+<section class="network-map" id="network">
+  <div class="map-header rev">
+    <p class="map-tag">Our Network</p>
+    <h2 class="map-h2">Connected to <strong>Every Corner</strong><br/>of the World's Oceans</h2>
+    <p class="map-sub">With Dubai as our primary hub and regional operations in Singapore, London and Geneva, GME's supply network spans every major shipping lane on the planet.</p>
+  </div>
+  <div class="gme-map rev">
+    <span class="gme-map-label">GME Global Port Presence</span>
+    <div class="gme-map-legend">
+      <span class="gme-legend-item"><svg width="10" height="10"><circle cx="5" cy="5" r="4" fill="#50A5AD"/></svg>Hub City</span>
+      <span class="gme-legend-item"><svg width="10" height="10"><circle cx="5" cy="5" r="3" fill="#8EC4A8"/></svg>Partner Port</span>
+      <span class="gme-legend-item"><svg width="18" height="10"><line x1="0" y1="5" x2="18" y2="5" stroke="#50A5AD" stroke-width="1.5" stroke-dasharray="3 2"/></svg>Active Route</span>
+    </div>
+    <svg id="gmeMapSvg" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="mapBg" cx="55%" cy="45%" r="65%"><stop offset="0%" stop-color="#0D2C38"/><stop offset="100%" stop-color="#040E14"/></radialGradient>
+        <filter id="mglow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="mglowX" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <rect width="1000" height="500" fill="url(#mapBg)"/>
+      <g stroke="rgba(80,165,173,0.06)" stroke-width=".5" fill="none">
+        <line x1="0" y1="83" x2="1000" y2="83"/><line x1="0" y1="167" x2="1000" y2="167"/><line x1="0" y1="250" x2="1000" y2="250"/><line x1="0" y1="333" x2="1000" y2="333"/><line x1="0" y1="417" x2="1000" y2="417"/>
+        <line x1="83" y1="0" x2="83" y2="500"/><line x1="167" y1="0" x2="167" y2="500"/><line x1="250" y1="0" x2="250" y2="500"/><line x1="333" y1="0" x2="333" y2="500"/><line x1="417" y1="0" x2="417" y2="500"/><line x1="500" y1="0" x2="500" y2="500"/><line x1="583" y1="0" x2="583" y2="500"/><line x1="667" y1="0" x2="667" y2="500"/><line x1="750" y1="0" x2="750" y2="500"/><line x1="833" y1="0" x2="833" y2="500"/><line x1="917" y1="0" x2="917" y2="500"/>
+      </g>
+      <g stroke="rgba(80,165,173,0.10)" stroke-width=".6" stroke-dasharray="4 6" fill="none"><line x1="0" y1="202" x2="1000" y2="202"/><line x1="0" y1="298" x2="1000" y2="298"/></g>
+      <g fill="rgba(80,165,173,0.08)" stroke="rgba(80,165,173,0.22)" stroke-width=".8">
+        <path d="M58,68 Q88,45 138,52 Q178,57 218,70 Q252,82 272,102 Q285,122 288,145 Q280,165 265,180 Q248,196 238,215 Q222,240 205,262 Q186,285 170,306 Q152,326 132,338 Q108,345 88,334 Q66,318 52,292 Q40,264 44,238 Q49,208 54,180 Q58,152 57,122 Q56,94 58,68Z"/>
+        <path d="M238,220 Q260,218 280,228 Q298,240 312,264 Q328,292 336,325 Q344,358 340,388 Q330,415 312,438 Q292,455 266,458 Q240,454 220,436 Q200,414 194,384 Q188,352 196,320 Q204,288 216,264 Q226,242 238,220Z"/>
+        <path d="M456,68 Q480,56 512,58 Q542,56 566,67 Q582,78 580,95 Q568,108 548,110 Q526,110 508,112 Q496,122 490,136 Q476,140 462,134 Q448,122 448,106 Q450,86 456,68Z"/>
+        <path d="M453,148 Q480,138 512,142 Q540,148 560,163 Q578,180 584,205 Q592,232 588,262 Q582,295 570,326 Q556,356 540,376 Q522,398 498,406 Q474,402 454,382 Q434,360 426,330 Q418,298 422,266 Q428,235 437,210 Q444,185 448,166 Q450,154 453,148Z"/>
+        <path d="M580,140 Q602,134 628,144 Q648,154 658,172 Q666,192 660,212 Q648,230 628,237 Q608,238 592,226 Q576,212 572,192 Q568,170 576,154 Q578,146 580,140Z"/>
+        <path d="M680,98 Q720,84 768,87 Q804,90 835,104 Q862,118 876,136 Q884,153 878,168 Q864,178 842,175 Q818,170 798,160 Q775,150 754,145 Q732,142 710,147 Q690,152 672,144 Q660,133 664,118 Q670,106 680,98Z"/>
+        <path d="M733,278 Q762,268 800,270 Q834,272 857,288 Q870,306 867,328 Q856,352 836,368 Q812,380 785,378 Q756,372 737,355 Q720,334 718,308 Q720,290 733,278Z"/>
+      </g>
+      <!-- ARCS -->
+      <path d="M652,180 Q728,294 788,247" fill="none" stroke="rgba(80,165,173,0.65)" stroke-width="1.4" class="arc-flow" style="animation-duration:4.5s;animation-delay:0s"/>
+      <path d="M652,180 Q556,40 499,107" fill="none" stroke="rgba(80,165,173,0.62)" stroke-width="1.4" class="arc-flow" style="animation-duration:5.5s;animation-delay:-1.3s"/>
+      <path d="M652,180 Q460,-4 295,137" fill="none" stroke="rgba(80,165,173,0.32)" stroke-width="1.0" class="arc-flow" style="animation-duration:8.0s;animation-delay:-3.8s"/>
+      <path d="M652,180 Q614,102 565,145" fill="none" stroke="rgba(142,196,168,0.48)" stroke-width="0.9" class="arc-flow" style="animation-duration:3.5s;animation-delay:-1.8s"/>
+      <path d="M652,180 Q622,136 590,163" fill="none" stroke="rgba(142,196,168,0.42)" stroke-width="0.9" class="arc-flow" style="animation-duration:3.0s;animation-delay:-0.5s"/>
+      <path d="M652,180 Q556,350 551,372" fill="none" stroke="rgba(80,165,173,0.40)" stroke-width="1.0" class="arc-flow" style="animation-duration:5.5s;animation-delay:-2.2s"/>
+      <path d="M652,180 Q742,152 796,219" fill="none" stroke="rgba(142,196,168,0.46)" stroke-width="1.0" class="arc-flow" style="animation-duration:4.0s;animation-delay:-1.0s"/>
+      <path d="M652,180 Q678,196 702,197" fill="none" stroke="rgba(142,196,168,0.36)" stroke-width="0.8" class="arc-flow" style="animation-duration:3.2s;animation-delay:-1.1s"/>
+      <path d="M788,247 Q600,88 513,106" fill="none" stroke="rgba(80,165,173,0.40)" stroke-width="1.1" class="arc-flow" style="animation-duration:6.5s;animation-delay:-2.8s"/>
+      <path d="M499,107 Q398,46 295,137" fill="none" stroke="rgba(80,165,173,0.34)" stroke-width="1.0" class="arc-flow" style="animation-duration:5.8s;animation-delay:-4.2s"/>
+      <!-- TRAFFIC DOTS -->
+      <g>
+        <circle r="2.8" fill="#50A5AD" opacity=".95" filter="url(#mglow)"><animateMotion dur="5s" repeatCount="indefinite" path="M652,180 Q728,294 788,247"/></circle>
+        <circle r="2.0" fill="#8EC4A8" opacity=".70"><animateMotion dur="5s" begin="1.7s" repeatCount="indefinite" path="M652,180 Q728,294 788,247"/></circle>
+        <circle r="2.6" fill="#50A5AD" opacity=".88" filter="url(#mglow)"><animateMotion dur="6s" repeatCount="indefinite" path="M652,180 Q556,40 499,107"/></circle>
+        <circle r="2.0" fill="#8EC4A8" opacity=".62"><animateMotion dur="6s" begin="3s" repeatCount="indefinite" path="M652,180 Q556,40 499,107"/></circle>
+        <circle r="2.4" fill="#50A5AD" opacity=".72"><animateMotion dur="9s" begin="1s" repeatCount="indefinite" path="M652,180 Q460,-4 295,137"/></circle>
+        <circle r="2.3" fill="#8EC4A8" opacity=".80"><animateMotion dur="3.8s" repeatCount="indefinite" path="M652,180 Q614,102 565,145"/></circle>
+        <circle r="2.2" fill="#8EC4A8" opacity=".82"><animateMotion dur="3.2s" begin="0.5s" repeatCount="indefinite" path="M652,180 Q622,136 590,163"/></circle>
+        <circle r="2.3" fill="#50A5AD" opacity=".70"><animateMotion dur="6s" begin="2s" repeatCount="indefinite" path="M652,180 Q556,350 551,372"/></circle>
+        <circle r="2.3" fill="#8EC4A8" opacity=".78"><animateMotion dur="4.2s" begin="0.3s" repeatCount="indefinite" path="M652,180 Q742,152 796,219"/></circle>
+        <circle r="2.0" fill="#8EC4A8" opacity=".74"><animateMotion dur="3.5s" begin="0.6s" repeatCount="indefinite" path="M652,180 Q678,196 702,197"/></circle>
+        <circle r="2.5" fill="#50A5AD" opacity=".78" filter="url(#mglow)"><animateMotion dur="7s" begin="1.5s" repeatCount="indefinite" path="M788,247 Q600,88 513,106"/></circle>
+        <circle r="2.4" fill="#50A5AD" opacity=".74"><animateMotion dur="6.5s" begin="2s" repeatCount="indefinite" path="M499,107 Q398,46 295,137"/></circle>
+      </g>
+      <!-- PORT DOTS -->
+      <g>
+        <g class="map-port" data-name="New York" data-type="Partner Port"><circle cx="295" cy="137" r="3.5" fill="#8EC4A8" opacity=".85"/><circle cx="295" cy="137" r="7" fill="none" stroke="#8EC4A8" stroke-width=".8" opacity=".30"/></g>
+        <g class="map-port" data-name="Houston" data-type="Partner Port"><circle cx="235" cy="167" r="2.8" fill="#8EC4A8" opacity=".72"/></g>
+        <g class="map-port" data-name="Rotterdam" data-type="Partner Port"><circle cx="513" cy="106" r="3.5" fill="#8EC4A8" opacity=".85"/><circle cx="513" cy="106" r="7" fill="none" stroke="#8EC4A8" stroke-width=".8" opacity=".30"/></g>
+        <g class="map-port" data-name="Hamburg" data-type="Partner Port"><circle cx="527" cy="101" r="2.8" fill="#8EC4A8" opacity=".74"/></g>
+        <g class="map-port" data-name="Barcelona" data-type="Partner Port"><circle cx="506" cy="135" r="2.8" fill="#8EC4A8" opacity=".72"/></g>
+        <g class="map-port" data-name="Gibraltar" data-type="Partner Port"><circle cx="484" cy="150" r="2.5" fill="#8EC4A8" opacity=".62"/></g>
+        <g class="map-port" data-name="Piraeus · Greece" data-type="Partner Port"><circle cx="565" cy="145" r="3.5" fill="#8EC4A8" opacity=".85"/><circle cx="565" cy="145" r="7" fill="none" stroke="#8EC4A8" stroke-width=".8" opacity=".30"/></g>
+        <g class="map-port" data-name="Port Said · Egypt" data-type="Partner Port"><circle cx="590" cy="163" r="3.0" fill="#8EC4A8" opacity=".82"/></g>
+        <g class="map-port" data-name="Jeddah · Saudi Arabia" data-type="Partner Port"><circle cx="609" cy="190" r="3.0" fill="#8EC4A8" opacity=".76"/></g>
+        <g class="map-port" data-name="Fujairah · UAE" data-type="Partner Port"><circle cx="668" cy="179" r="3.0" fill="#8EC4A8" opacity=".80"/></g>
+        <g class="map-port" data-name="Mumbai · India" data-type="Partner Port"><circle cx="702" cy="197" r="3.0" fill="#8EC4A8" opacity=".76"/></g>
+        <g class="map-port" data-name="Colombo · Sri Lanka" data-type="Partner Port"><circle cx="722" cy="232" r="2.8" fill="#8EC4A8" opacity=".70"/></g>
+        <g class="map-port" data-name="Mombasa · Kenya" data-type="Partner Port"><circle cx="610" cy="261" r="2.8" fill="#8EC4A8" opacity=".68"/></g>
+        <g class="map-port" data-name="Ho Chi Minh City · Vietnam" data-type="Partner Port"><circle cx="796" cy="219" r="3.5" fill="#8EC4A8" opacity=".85"/><circle cx="796" cy="219" r="7" fill="none" stroke="#8EC4A8" stroke-width=".8" opacity=".30"/></g>
+        <g class="map-port" data-name="Hong Kong" data-type="Partner Port"><circle cx="817" cy="188" r="3.0" fill="#8EC4A8" opacity=".78"/></g>
+        <g class="map-port" data-name="Shanghai" data-type="Partner Port"><circle cx="837" cy="164" r="3.0" fill="#8EC4A8" opacity=".76"/></g>
+        <g class="map-port" data-name="Cape Town · South Africa" data-type="Partner Port"><circle cx="551" cy="372" r="3.5" fill="#8EC4A8" opacity=".85"/><circle cx="551" cy="372" r="7" fill="none" stroke="#8EC4A8" stroke-width=".8" opacity=".30"/></g>
+        <g class="map-port" data-name="Lagos · Nigeria" data-type="Partner Port"><circle cx="509" cy="233" r="2.5" fill="#8EC4A8" opacity=".62"/></g>
+      </g>
+      <!-- HUB MARKERS -->
+      <g class="map-hub" data-name="Dubai · JAFZA" data-type="Primary Hub — UAE" style="cursor:pointer">
+        <circle cx="652" cy="180" r="4" fill="none" stroke="#50A5AD" stroke-width="1.5"><animate attributeName="r" from="4" to="34" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" from="0.75" to="0" dur="3s" repeatCount="indefinite"/></circle>
+        <circle cx="652" cy="180" r="4" fill="none" stroke="#50A5AD" stroke-width="1.5"><animate attributeName="r" from="4" to="34" dur="3s" begin="1s" repeatCount="indefinite"/><animate attributeName="opacity" from="0.75" to="0" dur="3s" begin="1s" repeatCount="indefinite"/></circle>
+        <circle cx="652" cy="180" r="5.5" fill="#50A5AD" filter="url(#mglowX)" opacity=".7"/>
+        <circle cx="652" cy="180" r="4.5" fill="#50A5AD"/>
+        <circle cx="652" cy="180" r="2" fill="#C8F0F2"/>
+        <text x="652" y="202" text-anchor="middle" font-family="Raleway,sans-serif" font-size="8.5" font-weight="700" letter-spacing=".12em" fill="#50A5AD">DUBAI</text>
+        <text x="652" y="212" text-anchor="middle" font-family="Raleway,sans-serif" font-size="6.5" font-weight="500" letter-spacing=".08em" fill="rgba(80,165,173,0.55)">PRIMARY HUB</text>
+      </g>
+      <g class="map-hub" data-name="Singapore" data-type="Regional Hub — Asia-Pacific" style="cursor:pointer">
+        <circle cx="788" cy="247" r="4" fill="none" stroke="#50A5AD" stroke-width="1.2"><animate attributeName="r" from="4" to="24" dur="3s" begin="0.8s" repeatCount="indefinite"/><animate attributeName="opacity" from="0.65" to="0" dur="3s" begin="0.8s" repeatCount="indefinite"/></circle>
+        <circle cx="788" cy="247" r="4.5" fill="#50A5AD" filter="url(#mglow)" opacity=".7"/>
+        <circle cx="788" cy="247" r="4" fill="#50A5AD"/>
+        <text x="788" y="265" text-anchor="middle" font-family="Raleway,sans-serif" font-size="7.5" font-weight="700" letter-spacing=".1em" fill="rgba(80,165,173,0.85)">SINGAPORE</text>
+      </g>
+      <g class="map-hub" data-name="London · UK" data-type="Regional Hub — Europe" style="cursor:pointer">
+        <circle cx="499" cy="107" r="4" fill="none" stroke="#50A5AD" stroke-width="1.2"><animate attributeName="r" from="4" to="22" dur="3s" begin="1.6s" repeatCount="indefinite"/><animate attributeName="opacity" from="0.65" to="0" dur="3s" begin="1.6s" repeatCount="indefinite"/></circle>
+        <circle cx="499" cy="107" r="4" fill="#50A5AD" filter="url(#mglow)" opacity=".7"/>
+        <circle cx="499" cy="107" r="3.5" fill="#50A5AD"/>
+        <text x="499" y="122" text-anchor="middle" font-family="Raleway,sans-serif" font-size="7.5" font-weight="700" letter-spacing=".1em" fill="rgba(80,165,173,0.85)">LONDON</text>
+      </g>
+      <g class="map-hub" data-name="Geneva · Switzerland" data-type="Regional Hub — Europe" style="cursor:pointer">
+        <circle cx="518" cy="116" r="3.5" fill="#8EC4A8" opacity=".85"/>
+        <text x="518" y="131" text-anchor="middle" font-family="Raleway,sans-serif" font-size="7" font-weight="600" letter-spacing=".1em" fill="rgba(142,196,168,0.75)">GENEVA</text>
+      </g>
+    </svg>
+    <div class="map-stats-strip">
+      <div class="mss-item"><span class="mss-val">25</span><span class="mss-lbl">Active Routes</span></div>
+      <div class="mss-div"></div>
+      <div class="mss-item"><span class="mss-val">30+</span><span class="mss-lbl">Partner Ports</span></div>
+      <div class="mss-div"></div>
+      <div class="mss-item"><span class="mss-val">6</span><span class="mss-lbl">Continents Served</span></div>
+      <div class="mss-div"></div>
+      <div class="mss-item"><span class="mss-val">24/7</span><span class="mss-lbl">Supply Availability</span></div>
+    </div>
+    <div id="mapTooltip" class="map-tooltip" style="display:none"><div class="mtt-type"></div><div class="mtt-name"></div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="test-inner">
+    <p class="test-tag rev">What Clients Say</p>
+    <div class="test-grid">
+      <div class="test-card rev">
+        <p class="test-quote">"GME's operations team is responsive in a way that genuinely makes a difference at sea. We've called them at short notice across multiple ports and they've delivered every time — correctly documented, on spec, on time."</p>
+        <div class="test-author"><div class="test-avatar">KL</div><div><div class="test-name">K. Larsen</div><div class="test-co">Fleet Operations Manager · Nordic Tankers</div></div></div>
+      </div>
+      <div class="test-card rev" style="transition-delay:.12s">
+        <p class="test-quote">"We've bunkered through GME across four different ports in the last quarter. Every single stem was on time, correctly documented, and competitively priced."</p>
+        <div class="test-author"><div class="test-avatar">RM</div><div><div class="test-name">R. Mehta</div><div class="test-co">Chartering Director · Meridian Shipping</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ETHOS -->
+<section class="ethos" id="ethos">
+  <div class="ethos-vid">
+    <video autoplay muted loop playsinline>
+      <source src="office.mp4" type="video/mp4"/>
+    </video>
+  </div>
+  <div class="ethos-vid-overlay"></div>
+  <div class="ethos-inner">
+    <p class="ethos-tag">Our Values</p>
+    <h2 class="ethos-h2">Precision in Every<br/><strong>Decision We Make.</strong></h2>
+    <div class="ethos-values">
+      <div class="ethos-val rev">
+        <svg class="ethos-val-icon" viewBox="0 0 36 36" fill="none"><path d="M18 4 L32 10 L32 22 L18 32 L4 22 L4 10 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M11 18 L16 23 L25 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="ethos-val-name">Integrity</div>
+        <p>We operate with complete transparency — in pricing, documentation and every client relationship we build.</p>
+      </div>
+      <div class="ethos-val rev" style="transition-delay:.1s">
+        <svg class="ethos-val-icon" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="14" stroke="currentColor" stroke-width="1.5"/><path d="M18 10 L18 18 L24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="18" cy="18" r="2" fill="currentColor"/></svg>
+        <div class="ethos-val-name">Reliability</div>
+        <p>Supply chain disruption is not an option. We build redundancy and depth into every route we operate.</p>
+      </div>
+      <div class="ethos-val rev" style="transition-delay:.2s">
+        <svg class="ethos-val-icon" viewBox="0 0 36 36" fill="none"><path d="M18 4 Q28 10 28 20 Q28 30 18 34 Q8 30 8 20 Q8 10 18 4Z" stroke="currentColor" stroke-width="1.5"/><path d="M12 20 Q16 16 20 20 Q24 24 28 20" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>
+        <div class="ethos-val-name">Sustainability</div>
+        <p>We actively promote compliant, low-emission fuel solutions and support the industry's transition to cleaner energy.</p>
+      </div>
+      <div class="ethos-val rev" style="transition-delay:.3s">
+        <svg class="ethos-val-icon" viewBox="0 0 36 36" fill="none"><circle cx="12" cy="14" r="6" stroke="currentColor" stroke-width="1.5"/><circle cx="24" cy="14" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M4 30 Q4 22 12 22 L24 22 Q32 22 32 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div class="ethos-val-name">Partnership</div>
+        <p>Our clients are partners. We invest in long-term relationships built on trust, performance and shared ambition.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUSTAINABILITY -->
+<section class="sustain" id="sustainability">
+  <div class="sustain-inner">
+    <div class="rev-l">
+      <p class="sustain-tag">Sustainability</p>
+      <h2 class="sustain-h2">Fuelling Progress.<br/><strong>Responsibly.</strong></h2>
+      <p class="sustain-body">GME is committed to responsible supply. We focus on HSFO, VLSFO and MGO — the fuels that move the world's fleet today — and hold every stem to the highest quality and compliance standards in the industry.</p>
+      <div class="sustain-points">
+        <div class="sustain-pt"><div class="sustain-pt-dot"></div><span>VLSFO and MGO fully compliant with the IMO 2020 0.5% global sulphur cap</span></div>
+        <div class="sustain-pt"><div class="sustain-pt-dot"></div><span>Independent third-party laboratory testing at every major stem</span></div>
+        <div class="sustain-pt"><div class="sustain-pt-dot"></div><span>MARPOL Annex VI documentation provided as standard on every delivery</span></div>
+        <div class="sustain-pt"><div class="sustain-pt-dot"></div><span>Transparent bunker delivery note and quality report turnaround within 24 hours</span></div>
+      </div>
+    </div>
+    <div class="rev-r">
+      <div class="sustain-visual">
+        <div class="sustain-stat"><div class="sustain-stat-val">0.1%</div><div class="sustain-stat-lbl">Max Sulphur in ECA Zones</div></div>
+        <div class="sustain-stat"><div class="sustain-stat-val">100%</div><div class="sustain-stat-lbl">MARPOL Compliant</div></div>
+        <div class="sustain-stat"><div class="sustain-stat-val">ISO</div><div class="sustain-stat-lbl">8217 Quality Standard</div></div>
+        <div class="sustain-stat"><div class="sustain-stat-val">24h</div><div class="sustain-stat-lbl">Quality Report Turnaround</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THOUGHT LEADERSHIP -->
+<section class="news" id="news">
+  <div class="news-header rev">
+    <p class="news-tag">Thought Leadership</p>
+    <h2 class="news-h2">Intelligence from the <strong>Engine Room</strong> of Global Bunkering</h2>
+    <p class="news-intro">Operational insight, market analysis and compliance guidance from GME's trading and operations desks.</p>
+  </div>
+  <div class="news-featured rev">
+    <div class="news-feat-label">Featured</div>
+    <div class="news-feat-cat">Market Intelligence</div>
+    <div class="news-feat-date">May 2024</div>
+    <h3 class="news-feat-title">The Arabian Gulf Bunker Market in 2024: Supply Dynamics, Pricing Pressure and What Operators Should Know</h3>
+    <p class="news-feat-body">Fujairah remains one of the world's highest-volume bunkering hubs — but the competitive landscape is shifting. GME's trading desk breaks down current HSFO and VLSFO spread dynamics in the Gulf, the factors driving price volatility at Khor Fakkan and Port Rashid, and what fleet operators need to factor into their procurement strategy for the remainder of 2024.</p>
+    <span class="news-card-link">Read Full Article <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+  </div>
+  <div class="news-grid">
+    <div class="news-card rev">
+      <div class="news-card-top"></div>
+      <div class="news-card-body">
+        <div class="news-card-cat">Market Insight</div>
+        <div class="news-card-date">March 2024</div>
+        <div class="news-card-title">HSFO vs VLSFO: How Shipowners Should Think About the Choice in 2024</div>
+        <p class="news-card-excerpt">Four years on from the IMO 2020 sulphur cap, the market has settled — but the HSFO vs VLSFO decision remains consequential. Spread dynamics, scrubber economics and port availability all factor in.</p>
+        <span class="news-card-link">Read Article <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      </div>
+    </div>
+    <div class="news-card rev" style="transition-delay:.1s">
+      <div class="news-card-top"></div>
+      <div class="news-card-body">
+        <div class="news-card-cat">Compliance</div>
+        <div class="news-card-date">January 2024</div>
+        <div class="news-card-title">MGO in ECA Zones: Documentation, Testing and What Port State Control Expects</div>
+        <p class="news-card-excerpt">Enforcement is tightening in Emissions Control Areas. MGO supply at ECA-relevant ports requires more than a compliant product — it requires watertight documentation and correct sampling procedures.</p>
+        <span class="news-card-link">Read Article <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      </div>
+    </div>
+    <div class="news-card rev" style="transition-delay:.2s">
+      <div class="news-card-top"></div>
+      <div class="news-card-body">
+        <div class="news-card-cat">Operations</div>
+        <div class="news-card-date">February 2024</div>
+        <div class="news-card-title">Short-Notice Stems: How Reliable Physical Suppliers Manage the Last 48 Hours</div>
+        <p class="news-card-excerpt">The bunker market's tightest test is the short-notice stem — vessel arrives early, port window is compressed, and the product needs to be on board before departure. GME's operations team walks through how physical supply readiness is built, not improvised.</p>
+        <span class="news-card-link">Read Article <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      </div>
+    </div>
+    <div class="news-card rev" style="transition-delay:.1s">
+      <div class="news-card-top"></div>
+      <div class="news-card-body">
+        <div class="news-card-cat">Industry Analysis</div>
+        <div class="news-card-date">December 2023</div>
+        <div class="news-card-title">Credit Risk in Bunker Trading: The Case for Stronger Counterparty Standards</div>
+        <p class="news-card-excerpt">High-volume, low-margin deals financed against thin credit facilities remain the industry's structural weak point. This article examines the frameworks sophisticated operators use to assess and manage counterparty exposure.</p>
+        <span class="news-card-link">Read Article <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      </div>
+    </div>
+    <div class="news-card rev" style="transition-delay:.2s">
+      <div class="news-card-top"></div>
+      <div class="news-card-body">
+        <div class="news-card-cat">Quality &amp; Compliance</div>
+        <div class="news-card-date">November 2023</div>
+        <div class="news-card-title">ISO 8217: What the Standard Actually Requires and Where Disputes Arise</div>
+        <p class="news-card-excerpt">ISO 8217 is the backbone of marine fuel quality specification, but it is frequently misunderstood. GME's quality assurance team examines the most common claim scenarios and how rigorous pre-delivery sampling closes the gap.</p>
+        <span class="news-card-link">Read Article <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      </div>
+    </div>
+    <div class="news-card rev" style="transition-delay:.3s">
+      <div class="news-card-top"></div>
+      <div class="news-card-body">
+        <div class="news-card-cat">Risk &amp; Finance</div>
+        <div class="news-card-date">October 2023</div>
+        <div class="news-card-title">Payment Terms in Physical Bunkering: What Operators Need to Negotiate Before the Stem</div>
+        <p class="news-card-excerpt">Payment risk in the bunker supply chain is asymmetric. GME's trading team sets out the key payment and credit considerations to resolve at the enquiry stage.</p>
+        <span class="news-card-link">Read Article <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      </div>
+    </div>
+  </div>
+  <div class="news-footer">
+    <a href="mailto:enquiries@gmefuels.com" class="btn-primary">Subscribe to GME Intelligence</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <p class="contact-tag">Get in Touch</p>
+      <h2 class="contact-h2">Ready to discuss your <strong>bunkering requirements?</strong></h2>
+      <p class="contact-body">Our trading and operations desks are available around the clock across Gulf, African and Asian port corridors. Whether you need a competitive stem quote, a credit facility discussion, or operational support at short notice, GME's team is ready to respond.</p>
+      <div class="contact-offices">
+        <div class="contact-office">
+          <div class="contact-office-city">Dubai — Head Office</div>
+          <p>Unit 1408, Regal Tower, Business Bay<br>Dubai, United Arab Emirates<br><a href="tel:+97144000000">+971 4 400 0000</a> &nbsp;·&nbsp; <a href="mailto:enquiries@gmefuels.com">enquiries@gmefuels.com</a></p>
+        </div>
+        <div class="contact-office">
+          <div class="contact-office-city">Singapore — Asia Pacific</div>
+          <p>9 Raffles Place, #26-01 Republic Plaza<br>Singapore 048619<br><a href="mailto:singapore@gmefuels.com">singapore@gmefuels.com</a></p>
+        </div>
+        <div class="contact-office">
+          <div class="contact-office-city">London — Europe</div>
+          <p>30 St Mary Axe, London EC3A 8BF<br>United Kingdom<br><a href="mailto:london@gmefuels.com">london@gmefuels.com</a></p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <form class="contact-form" onsubmit="return false">
+        <div class="form-row">
+          <div class="form-field"><label for="cf-name">Full Name</label><input type="text" id="cf-name" placeholder="John Smith"></div>
+          <div class="form-field"><label for="cf-company">Company</label><input type="text" id="cf-company" placeholder="Shipping Co. Ltd"></div>
+        </div>
+        <div class="form-field"><label for="cf-email">Email Address</label><input type="email" id="cf-email" placeholder="john@company.com"></div>
+        <div class="form-field"><label for="cf-port">Port of Interest</label><input type="text" id="cf-port" placeholder="Fujairah, Durban, Singapore…"></div>
+        <div class="form-field"><label for="cf-msg">Message</label><textarea id="cf-msg" placeholder="Stem quantity, grade required, ETA…"></textarea></div>
+        <button class="form-submit" type="submit">Send Enquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="footer">
+  <div class="footer-top">
+    <div class="footer-col">
+      <div class="footer-logo">
+        <div>
+          <div class="footer-logo-gme">GME</div>
+          <div class="footer-logo-sub">Global Marine Energy</div>
+        </div>
+      </div>
+      <p class="footer-desc">Physical marine fuel supply across Gulf, African and Asian port corridors. Reliability, compliance and precision delivery — at scale.</p>
+      <p class="footer-reg">Registered in Dubai, UAE · Est. 2024</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Navigation</div>
+      <ul>
+        <li><a href="#about">About GME</a></li>
+        <li><a href="#capabilities">Services</a></li>
+        <li><a href="#operations">Operations</a></li>
+        <li><a href="#sustainability">Sustainability</a></li>
+        <li><a href="#news">Thought Leadership</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <ul>
+        <li><a href="#capabilities">HSFO Supply</a></li>
+        <li><a href="#capabilities">VLSFO Supply</a></li>
+        <li><a href="#capabilities">MGO Supply</a></li>
+        <li><a href="#capabilities">Physical Delivery</a></li>
+        <li><a href="#capabilities">Quality Assurance</a></li>
+        <li><a href="#capabilities">24/7 Operations</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Legal</div>
+      <ul>
+        <li><a href="#" onclick="document.getElementById('tcModal').classList.add('open');return false">Terms &amp; Conditions</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Sanctions Compliance</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">&copy; 2024 Global Marine Energy DMCC. All rights reserved.</p>
+    <div class="footer-legal">
+      <a href="#" onclick="document.getElementById('tcModal').classList.add('open');return false">Terms &amp; Conditions</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Sanctions Policy</a>
+    </div>
+  </div>
+</footer>
+
+<!-- T&Cs MODAL -->
+<div class="tc-modal" id="tcModal">
+  <div class="tc-backdrop" onclick="document.getElementById('tcModal').classList.remove('open')"></div>
+  <div class="tc-box">
+    <button class="tc-close" onclick="document.getElementById('tcModal').classList.remove('open')" aria-label="Close">&#215;</button>
+    <div class="tc-eyebrow">Legal</div>
+    <h2 class="tc-title">General <strong>Terms &amp; Conditions</strong> of Sale</h2>
+    <p class="tc-updated">Last updated: 1 January 2024 &nbsp;·&nbsp; Governed by English Law</p>
+    <div class="tc-section"><div class="tc-section-num">Clause 1</div><h3>Definitions</h3><p>In these Terms and Conditions: <strong>"GME"</strong> means Global Marine Energy DMCC, a company registered in the Dubai Multi Commodities Centre, UAE; <strong>"Buyer"</strong> means the vessel owner, operator, charterer or other party purchasing marine fuels from GME; <strong>"Product"</strong> means any marine fuel grade supplied by GME, including HSFO, VLSFO, ULSFO and MGO; <strong>"BDN"</strong> means the Bunker Delivery Note issued at the time of delivery; <strong>"Contract"</strong> means the agreement between GME and the Buyer for the supply of Product, incorporating these Terms and Conditions.</p></div>
+    <div class="tc-section"><div class="tc-section-num">Clause 2</div><h3>Contract Formation</h3><p>No Contract shall be formed unless and until GME issues a written order confirmation to the Buyer. Verbal agreements, email enquiries and indications of price do not constitute a binding contract. The Buyer's acceptance of these Terms and Conditions — whether by signature, counter-confirmation or acceptance of delivery — shall constitute full agreement to all clauses herein. In the event of any conflict between these Terms and any purchase order or counter-terms issued by the Buyer, these Terms shall prevail.</p></div>
+    <div class="tc-section"><div class="tc-section-num">Clause 3</div><h3>Delivery &amp; Quantity</h3><p>Delivery shall be effected ex-ship or ex-barge at the nominated delivery port. Risk of loss and title to the Product shall pass to the Buyer at the point at which the Product passes the flange connection between the delivery hose and the receiving vessel's bunker manifold.</p><p>The quantity delivered shall be determined by the receiving vessel's flow meter or, where agreed in writing, by the shore tank or barge meter. The quantity stated on the BDN issued by GME at the time of delivery shall be deemed final and conclusive unless the Buyer produces contemporaneous, independent metering evidence within 24 hours of completion of delivery.</p></div>
+    <div class="tc-section"><div class="tc-section-num">Clause 4</div><h3>Product Quality</h3><p>All Products shall conform to the specification agreed in the Contract, in accordance with ISO 8217 (current edition at the date of supply) or such other specification as expressly agreed in writing. GME shall retain retained samples for a minimum period of 90 days from the date of delivery.</p><p>Any quality claim must be submitted to GME in writing within 14 days of the date of delivery, accompanied by the results of an independent analysis of a retained sample drawn in the presence of both parties' representatives at the time of delivery. Failure to submit a claim within this period shall constitute a waiver of any quality claim by the Buyer.</p></div>
+    <div class="tc-section"><div class="tc-section-num">Clause 5</div><h3>Payment Terms</h3><p>Payment shall be due within 30 days of the date of the BDN unless otherwise agreed in writing. All sums are payable in United States Dollars by telegraphic transfer to the bank account nominated by GME. Time of payment is of the essence.</p><p>Interest shall accrue on overdue amounts at the rate of 2% per month (compounded monthly) from the due date until the date of actual payment, whether before or after judgment. The Buyer shall not be entitled to set off, deduct or withhold any amount from sums due to GME on any ground whatsoever.</p></div>
+    <div class="tc-section"><div class="tc-section-num">Clause 6</div><h3>Vessel Responsibility</h3><p>The Buyer warrants that the receiving vessel is in a fit and proper condition to receive the Product and that all bunker manifolds, piping and tanks are suitable for the grade and quantity ordered. The Buyer shall be solely responsible for ensuring that the vessel's crew and officers are present and attentive throughout the delivery operation. GME shall not be liable for any spillage, contamination or loss arising from the condition or operation of the receiving vessel's equipment or crew.</p></div>
+    <div class="tc-section"><div class="tc-section-num">Clause 7</div><h3>Limitation of Liability</h3><p>GME's total liability to the Buyer under or in connection with any Contract shall not exceed the invoice value of the Product delivered under that Contract. In no circumstances shall GME be liable for any indirect, consequential, special or punitive losses, including but not limited to loss of profit, loss of use of vessel, demurrage, detention, deviation costs or reputational damage, whether arising in contract, tort or otherwise.</p></div>
+    <div class="tc-section"><div class="tc-section-num">Clause 8</div><h3>Sanctions Compliance</h3><p>The Buyer warrants that neither the Buyer, the vessel, the cargo nor any party connected with the transaction is subject to sanctions administered by the United Nations, the European Union, the United States Office of Foreign Assets Control (OFAC), or any other applicable sanctions authority. GME reserves the right to suspend or cancel delivery without liability in the event that it reasonably believes that any sanction may apply. The Buyer shall indemnify GME against all losses arising from any breach of this warranty.</p></div>
+    <div class="tc-section"><div class="tc-section-num">Clause 9</div><h3>Force Majeure</h3><p>Neither party shall be in breach of the Contract, nor liable for any failure or delay in performance, to the extent that such failure or delay is caused by circumstances beyond that party's reasonable control, including but not limited to acts of God, war, civil unrest, port closure, governmental action, weather, or industrial dispute. The affected party shall notify the other in writing as soon as reasonably practicable. If the force majeure event continues for more than 14 days, either party may terminate the Contract without liability on written notice.</p></div>
+    <div class="tc-section"><div class="tc-section-num">Clause 10</div><h3>Governing Law &amp; Arbitration</h3><p>These Terms and Conditions and any Contract incorporating them shall be governed by and construed in accordance with English law. Any dispute arising out of or in connection with any Contract, including any question regarding its existence, validity or termination, shall be referred to and finally resolved by arbitration in London in accordance with the rules of the London Maritime Arbitrators Association (LMAA) for the time being in force. The arbitration shall be conducted in the English language before a sole arbitrator agreed between the parties, or in default of agreement, appointed by the LMAA.</p></div>
+    <div class="tc-section"><div class="tc-section-num">Clause 11</div><h3>Entire Agreement</h3><p>These Terms and Conditions, together with the written order confirmation issued by GME, constitute the entire agreement between the parties with respect to the supply of Product and supersede all prior negotiations, representations and agreements, whether oral or written. No variation to these Terms shall be effective unless agreed in writing and signed by an authorised representative of GME.</p></div>
+  </div>
+</div>
+
+<script>
+const nav=document.getElementById('mainNav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60)},{passive:true});
+const burger=document.getElementById('burger'),navLinks=document.getElementById('navLinks');
+if(burger)burger.addEventListener('click',()=>{burger.classList.toggle('open');navLinks.classList.toggle('open')});
+const revEls=document.querySelectorAll('.rev,.rev-l,.rev-r');
+const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target)}})},{threshold:0,rootMargin:'0px 0px 0px 0px'});
+revEls.forEach(el=>revObs.observe(el));
+setTimeout(()=>revEls.forEach(el=>el.classList.add('in')),1500);
+function easeOut(t){return 1-Math.pow(1-t,3)}
+const counters=document.querySelectorAll('.cnt[data-target]');
+const cntObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,target=parseInt(el.dataset.target,10),dur=1600,start=performance.now();const tick=now=>{const p=Math.min((now-start)/dur,1);el.textContent=Math.round(easeOut(p)*target);if(p<1)requestAnimationFrame(tick)};requestAnimationFrame(tick);cntObs.unobserve(el)})},{threshold:0});
+setTimeout(()=>counters.forEach(el=>{if(el.textContent==='0'||el.textContent===''){const target=parseInt(el.dataset.target,10),dur=1600,start=performance.now();const tick=now=>{const p=Math.min((now-start)/dur,1);el.textContent=Math.round(easeOut(p)*target);if(p<1)requestAnimationFrame(tick)};requestAnimationFrame(tick)}}),2000);
+counters.forEach(el=>cntObs.observe(el));
+const gmeMapSvg=document.getElementById('gmeMapSvg'),mapTip=document.getElementById('mapTooltip');
+if(gmeMapSvg&&mapTip){const mapWrap=gmeMapSvg.closest('.gme-map');gmeMapSvg.querySelectorAll('.map-hub,.map-port').forEach(el=>{el.addEventListener('mouseenter',()=>{mapTip.querySelector('.mtt-type').textContent=el.dataset.type||'';mapTip.querySelector('.mtt-name').textContent=el.dataset.name||'';mapTip.style.display='block'});el.addEventListener('mousemove',ev=>{const r=mapWrap.getBoundingClientRect();mapTip.style.left=(ev.clientX-r.left+14)+'px';mapTip.style.top=(ev.clientY-r.top-8)+'px'});el.addEventListener('mouseleave',()=>{mapTip.style.display='none'})})}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('tcModal').classList.remove('open')});
+</script>
+</body>
+</html>
