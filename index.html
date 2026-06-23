@@ -47,6 +47,15 @@ ul{list-style:none}
 .nav-links a:hover{color:var(--teal)}
 .nav-cta{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);border:1.5px solid var(--teal);padding:9px 22px;transition:background .3s,color .3s}
 .nav-cta:hover{background:var(--teal);color:#fff}
+.nav-dropdown{position:relative}
+.nav-dropdown>a::after{content:'▾';margin-left:5px;font-size:9px;opacity:.7}
+.nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);min-width:180px;background:#fff;border-top:2px solid var(--teal);box-shadow:0 8px 32px rgba(0,0,0,.13);padding:8px 0;z-index:200}
+.nav.scrolled .nav-dropdown-menu{background:#fff}
+.nav-dropdown-menu a{display:block;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);padding:10px 20px;transition:background .2s,color .2s;white-space:nowrap}
+.nav-dropdown-menu a:hover{background:var(--teal);color:#fff}
+.nav-dropdown-menu .dd-enquire{border-top:1px solid rgba(0,0,0,.08);margin-top:4px;padding-top:12px;color:var(--teal);font-weight:700}
+.nav-dropdown-menu .dd-enquire:hover{background:var(--teal);color:#fff}
+.nav-dropdown:hover .nav-dropdown-menu{display:block}
 
 /* HERO */
 .hero{
@@ -387,7 +396,16 @@ ul{list-style:none}
   </div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#capabilities">Services</a></li>
+    <li class="nav-dropdown">
+      <a href="#capabilities">Services</a>
+      <div class="nav-dropdown-menu">
+        <a href="#capabilities">Marine Bunkering</a>
+        <a href="#capabilities">Global Port Coverage</a>
+        <a href="#capabilities">Quality Assurance</a>
+        <a href="#capabilities">24/7 Operations</a>
+        <a href="#contact" class="dd-enquire">Enquire Now</a>
+      </div>
+    </li>
     <li><a href="#network">Network</a></li>
     <li><a href="#news">Insights &amp; Research</a></li>
     <li><a href="#ethos">Values</a></li>
@@ -483,51 +501,6 @@ ul{list-style:none}
   </div>
 </section>
 
-<!-- OPERATIONS GALLERY -->
-<section class="ops-gallery" id="operations">
-  <div class="ops-header rev">
-    <div class="ops-tag">On The Water</div>
-    <h2 class="ops-h2">Precision at <strong>every port call</strong></h2>
-  </div>
-  <div class="ops-grid">
-    <div class="ops-cell ops-cell-sign">
-      <img src="op-sign.jpg" alt="Vessel access at port">
-      <div class="ops-cell-accent"></div>
-      <div class="ops-overlay">
-        <div class="ops-overlay-tag">Port Operations</div>
-        <h3 class="ops-overlay-title">Vessel Access</h3>
-        <p class="ops-overlay-desc">Port call coordination and berth access at major bunkering terminals worldwide.</p>
-      </div>
-    </div>
-    <div class="ops-cell ops-cell-center ops-cell-hull">
-      <img src="op-hull.gif" alt="Hull operations">
-      <div class="ops-cell-accent"></div>
-      <div class="ops-overlay">
-        <div class="ops-overlay-tag">Marine Services</div>
-        <h3 class="ops-overlay-title">In-Water Operations</h3>
-        <p class="ops-overlay-desc">Hull inspection and underwater maintenance for tankers and bulk carriers across the Arabian Gulf.</p>
-      </div>
-    </div>
-    <div class="ops-cell ops-cell-bow">
-      <img src="op-bow.jpg" alt="Fleet maintenance">
-      <div class="ops-cell-accent"></div>
-      <div class="ops-overlay">
-        <div class="ops-overlay-tag">Engineering</div>
-        <h3 class="ops-overlay-title">Fleet Readiness</h3>
-        <p class="ops-overlay-desc">Scheduled maintenance programmes and emergency response support delivered at 50+ global ports.</p>
-      </div>
-    </div>
-    <div class="ops-cell ops-cell-prop">
-      <img src="op-prop.jpg" alt="Propulsion systems">
-      <div class="ops-cell-accent"></div>
-      <div class="ops-overlay">
-        <div class="ops-overlay-tag">Technical</div>
-        <h3 class="ops-overlay-title">Propulsion Systems</h3>
-        <p class="ops-overlay-desc">Twin-thruster and main engine support for deep-draught vessels, coordinated with our marine engineering partners.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- METRICS -->
 <section class="metrics">
@@ -995,4 +968,4 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementB
 </script>
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
