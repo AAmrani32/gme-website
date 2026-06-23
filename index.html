@@ -369,6 +369,158 @@ ul{list-style:none}
 .tc-section ul{padding-left:20px}
 .tc-section ul li{list-style:disc}
 .tc-divider{height:1px;background:rgba(80,165,173,.1);margin:0 0 40px}
+
+/* ═══════════════════════════════════════
+   HAMBURGER + MOBILE NAV
+═══════════════════════════════════════ */
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:10px;min-width:44px;min-height:44px;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
+.nav-burger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:transform .28s ease,opacity .28s ease}
+.nav.scrolled .nav-burger span{background:var(--dark)}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-mobile{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(6,20,28,.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);z-index:98;border-bottom:1px solid rgba(80,165,173,.18);overflow-y:auto;max-height:calc(100vh - 72px)}
+.nav-mobile.open{display:block}
+.nm-link{display:flex;align-items:center;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.80);padding:0 28px;min-height:52px;border-bottom:1px solid rgba(80,165,173,.08);transition:color .2s,background .2s}
+.nm-link:hover,.nm-link:active{color:var(--teal);background:rgba(80,165,173,.06)}
+.nm-sub{background:rgba(0,0,0,.18);border-bottom:1px solid rgba(80,165,173,.08)}
+.nm-sub a{display:flex;align-items:center;font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);padding:0 44px;min-height:44px;border-bottom:1px solid rgba(80,165,173,.05);transition:color .2s}
+.nm-sub a:last-child{border-bottom:none}
+.nm-sub a:hover{color:var(--teal)}
+.nm-cta{display:flex;align-items:center;justify-content:center;margin:20px 28px 24px;background:var(--teal);color:#fff;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;min-height:52px;transition:background .2s}
+.nm-cta:hover{background:var(--teal-dark)}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — TABLET (≤ 900px)
+═══════════════════════════════════════ */
+@media (max-width:900px){
+  .nav{padding:0 24px}
+  .nav-links{gap:22px}
+  .nav-dropdown-menu{left:0;transform:none}
+  .about-inner{gap:48px}
+  .cap-grid{grid-template-columns:1fr 1fr}
+  .cap-card{min-height:auto;padding:40px 28px}
+  .ethos-values{grid-template-columns:1fr 1fr}
+  .ethos-val{padding:40px 28px}
+  .footer-top{grid-template-columns:1.4fr 1fr 1fr}
+  .footer-col:last-child{grid-column:1/-1}
+  .news-row{grid-template-columns:96px 1fr 24px;padding:16px 20px}
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — MOBILE (≤ 768px)
+═══════════════════════════════════════ */
+@media (max-width:768px){
+  /* Nav */
+  .nav{padding:0 20px;height:64px}
+  .nav-links{display:none}
+  .nav-burger{display:flex}
+  .nav-mobile{top:64px;max-height:calc(100vh - 64px)}
+
+  /* Hero */
+  .hero{min-height:100svh}
+  .hero-inner{padding:0 24px 80px;max-width:100%}
+  .hero-eyebrow{font-size:9px;margin-bottom:18px}
+  .hero-pillars{gap:14px;margin-bottom:36px}
+  .hero-actions{flex-direction:column;align-items:stretch;gap:12px}
+  .btn-primary,.btn-ghost{text-align:center;justify-content:center;padding:16px 24px}
+  .hero-scroll{display:none}
+
+  /* Heritage */
+  .heritage{height:48px}
+
+  /* About */
+  .about{padding:60px 24px}
+  .about-inner{grid-template-columns:1fr;gap:36px}
+  .about-frame{aspect-ratio:16/9}
+  .about-badge{bottom:12px;right:12px;padding:14px 20px}
+  .badge-year{font-size:26px}
+  .about-cred{gap:20px}
+  .cred-val{font-size:20px}
+
+  /* Metrics */
+  .metrics{padding:48px 24px}
+  .metrics-inner{grid-template-columns:1fr 1fr}
+  .metric-cell{padding:32px 20px}
+  .metric-val{font-size:clamp(32px,9vw,48px)}
+
+  /* Capabilities */
+  .capabilities{background-attachment:scroll;padding:56px 0 0}
+  .cap-header{padding:0 24px 44px}
+  .cap-grid{grid-template-columns:1fr 1fr}
+  .cap-card{padding:32px 20px;min-height:auto}
+  .cap-num{font-size:clamp(48px,10vw,64px)}
+
+  /* Network map */
+  .network-map{padding:56px 0 28px}
+  .map-header{padding:0 24px 36px}
+  .map-sub{font-size:13px}
+  .map-stats-row{flex-wrap:wrap;padding:14px 8px;gap:0}
+  .msr-item{padding:12px 16px;width:50%;border-bottom:1px solid rgba(80,165,173,.12)}
+  .msr-item:nth-child(odd){border-right:1px solid rgba(80,165,173,.12)}
+  .msr-item:nth-last-child(-n+2){border-bottom:none}
+  .msr-div{display:none}
+
+  /* Testimonials */
+  .testimonials{padding:60px 24px}
+  .test-grid{grid-template-columns:1fr;gap:20px}
+  .test-tag{margin-bottom:36px}
+  .test-quote{font-size:14px}
+  .test-card{padding:32px 24px}
+
+  /* Ethos */
+  .ethos-inner{padding:64px 24px}
+  .ethos-h2{margin-bottom:40px}
+  .ethos-values{grid-template-columns:1fr 1fr}
+  .ethos-val{padding:28px 20px}
+
+  /* Sustainability */
+  .sustain{padding:60px 24px}
+  .sustain-inner{grid-template-columns:1fr;gap:40px}
+  .sustain-visual{grid-template-columns:1fr 1fr}
+
+  /* Thought Leadership */
+  .news{padding:60px 24px}
+  .news-layout{grid-template-columns:1fr}
+  .news-feat-panel{padding:32px 28px}
+  .news-list-col{border-left:none;border-top:1px solid rgba(80,165,173,.12)}
+  .news-row{grid-template-columns:88px 1fr 20px;padding:14px 16px;gap:10px 12px}
+  .nr-title{font-size:12.5px}
+
+  /* Contact */
+  .contact{padding:60px 24px}
+  .contact-inner{grid-template-columns:1fr;gap:44px}
+  .form-row{grid-template-columns:1fr}
+  .form-submit{width:100%;text-align:center;padding:16px}
+  .form-field input,.form-field textarea{font-size:16px}/* prevents iOS zoom */
+
+  /* Footer */
+  .footer{padding:48px 24px 32px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:28px;margin-bottom:36px}
+  .footer-bottom{flex-direction:column;gap:14px;text-align:center}
+  .footer-legal{flex-wrap:wrap;justify-content:center;gap:14px}
+  .footer-desc{max-width:100%}
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — SMALL MOBILE (≤ 480px)
+═══════════════════════════════════════ */
+@media (max-width:480px){
+  .hero-inner{padding:0 20px 72px}
+  .cap-grid{grid-template-columns:1fr}
+  .ethos-values{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .hero-pillars{flex-direction:column;gap:8px}
+  .about-cred{flex-wrap:wrap;gap:16px}
+  .metrics-inner{grid-template-columns:1fr 1fr}
+  .msr-item{width:50%}
+  .news-row{grid-template-columns:1fr 20px;gap:10px}
+  .nr-meta{display:none}/* hide on tiny screens — title + arrow only */
+  .sustain-visual{grid-template-columns:1fr 1fr}
+  .contact-offices{gap:16px}
+  .contact-office{padding:18px 20px}
+  .test-card{padding:28px 20px}
+}
 </style>
 </head>
 <body>
@@ -414,7 +566,26 @@ ul{list-style:none}
     <li><a href="#ethos">Values</a></li>
     <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
   </ul>
+  <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE NAV PANEL -->
+<div class="nav-mobile" id="navMobile" aria-hidden="true">
+  <a href="#about" class="nm-link">About</a>
+  <a href="#capabilities" class="nm-link">Services</a>
+  <div class="nm-sub">
+    <a href="#capabilities">Marine Bunkering</a>
+    <a href="#capabilities">Global Port Coverage</a>
+    <a href="#capabilities">Quality Assurance</a>
+    <a href="#capabilities">24/7 Operations</a>
+  </div>
+  <a href="#network" class="nm-link">Network</a>
+  <a href="#news" class="nm-link">Insights &amp; Research</a>
+  <a href="#ethos" class="nm-link">Values</a>
+  <a href="#contact" class="nm-cta">Enquire Now</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -1010,31 +1181,4 @@ ul{list-style:none}
     <div class="tc-section"><div class="tc-section-num">Clause 6</div><h3>Vessel Responsibility</h3><p>The Buyer warrants that the receiving vessel is in a fit and proper condition to receive the Product and that all bunker manifolds, piping and tanks are suitable for the grade and quantity ordered. The Buyer shall be solely responsible for ensuring that the vessel's crew and officers are present and attentive throughout the delivery operation. GME shall not be liable for any spillage, contamination or loss arising from the condition or operation of the receiving vessel's equipment or crew.</p></div>
     <div class="tc-section"><div class="tc-section-num">Clause 7</div><h3>Limitation of Liability</h3><p>GME's total liability to the Buyer under or in connection with any Contract shall not exceed the invoice value of the Product delivered under that Contract. In no circumstances shall GME be liable for any indirect, consequential, special or punitive losses, including but not limited to loss of profit, loss of use of vessel, demurrage, detention, deviation costs or reputational damage, whether arising in contract, tort or otherwise.</p></div>
     <div class="tc-section"><div class="tc-section-num">Clause 8</div><h3>Sanctions Compliance</h3><p>The Buyer warrants that neither the Buyer, the vessel, the cargo nor any party connected with the transaction is subject to sanctions administered by the United Nations, the European Union, the United States Office of Foreign Assets Control (OFAC), or any other applicable sanctions authority. GME reserves the right to suspend or cancel delivery without liability in the event that it reasonably believes that any sanction may apply. The Buyer shall indemnify GME against all losses arising from any breach of this warranty.</p></div>
-    <div class="tc-section"><div class="tc-section-num">Clause 9</div><h3>Force Majeure</h3><p>Neither party shall be in breach of the Contract, nor liable for any failure or delay in performance, to the extent that such failure or delay is caused by circumstances beyond that party's reasonable control, including but not limited to acts of God, war, civil unrest, port closure, governmental action, weather, or industrial dispute. The affected party shall notify the other in writing as soon as reasonably practicable. If the force majeure event continues for more than 14 days, either party may terminate the Contract without liability on written notice.</p></div>
-    <div class="tc-section"><div class="tc-section-num">Clause 10</div><h3>Governing Law &amp; Arbitration</h3><p>These Terms and Conditions and any Contract incorporating them shall be governed by and construed in accordance with English law. Any dispute arising out of or in connection with any Contract, including any question regarding its existence, validity or termination, shall be referred to and finally resolved by arbitration in London in accordance with the rules of the London Maritime Arbitrators Association (LMAA) for the time being in force. The arbitration shall be conducted in the English language before a sole arbitrator agreed between the parties, or in default of agreement, appointed by the LMAA.</p></div>
-    <div class="tc-section"><div class="tc-section-num">Clause 11</div><h3>Entire Agreement</h3><p>These Terms and Conditions, together with the written order confirmation issued by GME, constitute the entire agreement between the parties with respect to the supply of Product and supersede all prior negotiations, representations and agreements, whether oral or written. No variation to these Terms shall be effective unless agreed in writing and signed by an authorised representative of GME.</p></div>
-  </div>
-</div>
-
-<script>
-const nav=document.getElementById('mainNav');
-window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60)},{passive:true});
-const burger=document.getElementById('burger'),navLinks=document.getElementById('navLinks');
-if(burger)burger.addEventListener('click',()=>{burger.classList.toggle('open');navLinks.classList.toggle('open')});
-const revEls=document.querySelectorAll('.rev,.rev-l,.rev-r');
-const revObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target)}})},{threshold:0,rootMargin:'0px 0px 0px 0px'});
-revEls.forEach(el=>revObs.observe(el));
-setTimeout(()=>revEls.forEach(el=>el.classList.add('in')),1500);
-function easeOut(t){return 1-Math.pow(1-t,3)}
-const counters=document.querySelectorAll('.cnt[data-target]');
-const cntObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,target=parseInt(el.dataset.target,10),dur=1600,start=performance.now();const tick=now=>{const p=Math.min((now-start)/dur,1);el.textContent=Math.round(easeOut(p)*target);if(p<1)requestAnimationFrame(tick)};requestAnimationFrame(tick);cntObs.unobserve(el)})},{threshold:0});
-setTimeout(()=>counters.forEach(el=>{if(el.textContent==='0'||el.textContent===''){const target=parseInt(el.dataset.target,10),dur=1600,start=performance.now();const tick=now=>{const p=Math.min((now-start)/dur,1);el.textContent=Math.round(easeOut(p)*target);if(p<1)requestAnimationFrame(tick)};requestAnimationFrame(tick)}}),2000);
-counters.forEach(el=>cntObs.observe(el));
-const gmeMapSvg=document.getElementById('gmeMapSvg'),mapTip=document.getElementById('mapTooltip');
-if(gmeMapSvg&&mapTip){const mapWrap=gmeMapSvg.closest('.gme-map');gmeMapSvg.querySelectorAll('.map-hub,.map-port').forEach(el=>{el.addEventListener('mouseenter',()=>{mapTip.querySelector('.mtt-type').textContent=el.dataset.type||'';mapTip.querySelector('.mtt-name').textContent=el.dataset.name||'';mapTip.style.display='block'});el.addEventListener('mousemove',ev=>{const r=mapWrap.getBoundingClientRect();mapTip.style.left=(ev.clientX-r.left+14)+'px';mapTip.style.top=(ev.clientY-r.top-8)+'px'});el.addEventListener('mouseleave',()=>{mapTip.style.display='none'})})}
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('tcModal').classList.remove('open')});
-</script>
-</body>
-</html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+    <div class="tc-section"><div class="tc-section-num">Clause 9</div><h3>Force Majeure</h3><p>Neither party shall be in breach of the Contract, nor liable for any failure or delay in performance, to the extent that such failure or delay is caused by circumstances beyond that party's reasonable control, including but not limited to acts of God, war, civil unrest, port closure, governmental action, weather, or industrial dispute. The affected party shall notify the other in writing as soon as reasonably practicable. If the force majeure event continues for more than 14 days, either party may terminate the Contr
