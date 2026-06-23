@@ -306,7 +306,7 @@ ul{list-style:none}
 
 /* CONTACT */
 .contact{background:var(--light-teal);border-top:1px solid rgba(80,165,173,.15);padding:100px 72px}
-.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1280px;margin:0 auto}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1280px;margin:0 auto;align-items:start}
 .contact-tag{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:12px;margin-bottom:24px}
 .contact-tag::before{content:'';display:block;width:28px;height:1.5px;background:var(--teal)}
 .contact-h2{font-size:clamp(28px,3.2vw,44px);font-weight:200;color:var(--text-h);line-height:1.2;letter-spacing:-.01em;margin-bottom:24px}
@@ -321,10 +321,10 @@ ul{list-style:none}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .form-field{display:flex;flex-direction:column;gap:6px}
 .form-field label{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--slate)}
-.form-field input,.form-field textarea{font-family:'Raleway',sans-serif;font-size:13.5px;font-weight:400;color:var(--text-h);background:var(--white);border:1px solid rgba(80,165,173,.20);padding:13px 16px;transition:border-color .3s,background .3s;outline:none;resize:none}
+.form-field input,.form-field textarea{font-family:'Raleway',sans-serif;font-size:13.5px;font-weight:400;color:var(--text-h);background:var(--white);border:1px solid rgba(80,165,173,.20);padding:13px 16px;transition:border-color .3s,background .3s;outline:none;resize:vertical}
 .form-field input:focus,.form-field textarea:focus{border-color:var(--teal);background:var(--light-teal)}
-.form-field textarea{min-height:120px}
-.form-submit{font-family:'Raleway',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;background:var(--teal);color:#fff;padding:16px 40px;border:none;cursor:pointer;align-self:flex-start;transition:background .3s}
+.form-field textarea{min-height:160px}
+.form-submit{font-family:'Raleway',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;background:var(--teal);color:#fff;padding:18px;border:none;cursor:pointer;width:100%;text-align:center;transition:background .3s}
 .form-submit:hover{background:var(--teal-dark)}
 
 /* FOOTER */
@@ -1174,4 +1174,4 @@ ul{list-style:none}
     <div class="tc-section"><div class="tc-section-num">Clause 6</div><h3>Vessel Responsibility</h3><p>The Buyer warrants that the receiving vessel is in a fit and proper condition to receive the Product and that all bunker manifolds, piping and tanks are suitable for the grade and quantity ordered. The Buyer shall be solely responsible for ensuring that the vessel's crew and officers are present and attentive throughout the delivery operation. GME shall not be liable for any spillage, contamination or loss arising from the condition or operation of the receiving vessel's equipment or crew.</p></div>
     <div class="tc-section"><div class="tc-section-num">Clause 7</div><h3>Limitation of Liability</h3><p>GME's total liability to the Buyer under or in connection with any Contract shall not exceed the invoice value of the Product delivered under that Contract. In no circumstances shall GME be liable for any indirect, consequential, special or punitive losses, including but not limited to loss of profit, loss of use of vessel, demurrage, detention, deviation costs or reputational damage, whether arising in contract, tort or otherwise.</p></div>
     <div class="tc-section"><div class="tc-section-num">Clause 8</div><h3>Sanctions Compliance</h3><p>The Buyer warrants that neither the Buyer, the vessel, the cargo nor any party connected with the transaction is subject to sanctions administered by the United Nations, the European Union, the United States Office of Foreign Assets Control (OFAC), or any other applicable sanctions authority. GME reserves the right to suspend or cancel delivery without liability in the event that it reasonably believes that any sanction may apply. The Buyer shall indemnify GME against all losses arising from any breach of this warranty.</p></div>
-    <div class="tc-section"><div class="tc-section-num">Clause 9</div><h3>Force Majeure</h3><p>Neither party shall be in breach of the Contract, nor liable for any failure or delay in performance, to the extent that such failure or delay is caused by circumstances beyond that party's reasonable control, including but not limited to acts of God, war, civil unrest, port closure, governmental action, weather, or industrial dispute. The affected party shall notify the other in writ
+    <div class="tc-section"><div class="tc-section-num">Clause 9</div><h3>Force Majeure</h3><p>Neither party shall be in breach of the Contract, nor liable for any failure or delay in performance, to the extent that such failure or delay is caused by circumstances beyond that party's reasonable control, including but not limited to acts of God, war, civil unrest, port closure, governmental action, weather, or industrial dispute. The affected party shall 
