@@ -9,8 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Raleway',sans-serif;background:#fff;color:#1A2E35;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:'Raleway',sans-serif;background:#fff;color:#1A2E35;-webkit-font-smoothing:antialiased;overflow-x:hidden;width:100%}
 img,video{display:block;max-width:100%}
 a{text-decoration:none;color:inherit}
 ul{list-style:none}
@@ -455,6 +455,8 @@ ul{list-style:none}
   .network-map{padding:56px 0 28px}
   .map-header{padding:0 24px 36px}
   .map-sub{font-size:13px}
+  .gme-map-wrap{max-width:100%;margin:0 12px;overflow:hidden}
+  #gmeMapSvg{width:100%;height:auto}
   .map-stats-row{flex-wrap:wrap;padding:14px 8px;gap:0}
   .msr-item{padding:12px 16px;width:50%;border-bottom:1px solid rgba(80,165,173,.12)}
   .msr-item:nth-child(odd){border-right:1px solid rgba(80,165,173,.12)}
@@ -1181,4 +1183,4 @@ ul{list-style:none}
     <div class="tc-section"><div class="tc-section-num">Clause 6</div><h3>Vessel Responsibility</h3><p>The Buyer warrants that the receiving vessel is in a fit and proper condition to receive the Product and that all bunker manifolds, piping and tanks are suitable for the grade and quantity ordered. The Buyer shall be solely responsible for ensuring that the vessel's crew and officers are present and attentive throughout the delivery operation. GME shall not be liable for any spillage, contamination or loss arising from the condition or operation of the receiving vessel's equipment or crew.</p></div>
     <div class="tc-section"><div class="tc-section-num">Clause 7</div><h3>Limitation of Liability</h3><p>GME's total liability to the Buyer under or in connection with any Contract shall not exceed the invoice value of the Product delivered under that Contract. In no circumstances shall GME be liable for any indirect, consequential, special or punitive losses, including but not limited to loss of profit, loss of use of vessel, demurrage, detention, deviation costs or reputational damage, whether arising in contract, tort or otherwise.</p></div>
     <div class="tc-section"><div class="tc-section-num">Clause 8</div><h3>Sanctions Compliance</h3><p>The Buyer warrants that neither the Buyer, the vessel, the cargo nor any party connected with the transaction is subject to sanctions administered by the United Nations, the European Union, the United States Office of Foreign Assets Control (OFAC), or any other applicable sanctions authority. GME reserves the right to suspend or cancel delivery without liability in the event that it reasonably believes that any sanction may apply. The Buyer shall indemnify GME against all losses arising from any breach of this warranty.</p></div>
-    <div class="tc-section"><div class="tc-section-num">Clause 9</div><h3>Force Majeure</h3><p>Neither party shall be in breach of the Contract, nor liable for any failure or delay in performance, to the extent that such failure or delay is caused by circumstances beyond that party's reasonable control, including but not limited to acts of God, war, civil unrest, port closure, governmental action, weather, or industrial dispute. The affected party shall notify the other in writing as soon as reasonably practicable. If the force majeure event continues for more than 14 days, either party may terminate the Contr
+    <div class="tc-section"><div class="tc-section-num">Clause 9</div><h3>Force Majeure</h3><p>Neither party shall be in breach of the Contract, nor liable for any failure or delay in performance, to the extent that such failure or delay is caused by circumstances beyond that party's reasonable control, including but not limited to acts of God, war, civil unrest, port closure, governmental action, weather, or industrial dispute. The affected party shall notify the ot
