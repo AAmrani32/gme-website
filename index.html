@@ -111,23 +111,33 @@ ul{list-style:none}
 @keyframes lineSheen{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
 
 /* NEWS / INSIGHTS */
-.news{background:var(--off-white);border-top:1px solid rgba(80,165,173,.10);padding:100px 72px}
-.news-header{text-align:center;margin-bottom:64px}
+.news{background:var(--white);border-top:1px solid rgba(80,165,173,.10);padding:80px 72px}
+.news-header{text-align:center;margin-bottom:52px}
 .news-tag{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px}
 .news-tag::before,.news-tag::after{content:'';display:block;width:24px;height:1.5px;background:var(--teal)}
 .news-h2{font-size:clamp(28px,3.2vw,42px);font-weight:200;color:var(--text-h);line-height:1.2;letter-spacing:-.01em;margin-bottom:12px}
 .news-h2 strong{font-weight:700}
-.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1280px;margin:0 auto}
-.news-card{background:var(--white);border:1px solid rgba(80,165,173,.12);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .35s,border-color .35s,transform .35s}
-.news-card:hover{box-shadow:0 16px 48px rgba(80,165,173,.14);border-color:rgba(80,165,173,.25);transform:translateY(-3px)}
-.news-card-top{height:4px;background:linear-gradient(to right,var(--orange),var(--orange-light))}
-.news-card-body{padding:36px 32px;flex:1;display:flex;flex-direction:column}
-.news-card-cat{font-size:8.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
-.news-card-date{font-size:9px;font-weight:500;letter-spacing:.1em;color:var(--text-m);margin-bottom:10px}
-.news-card-title{font-size:16px;font-weight:700;color:var(--text-h);line-height:1.4;letter-spacing:.01em;margin-bottom:16px}
-.news-card-excerpt{font-size:13px;font-weight:300;color:var(--text-b);line-height:1.85;flex:1}
-.news-card-link{display:inline-flex;align-items:center;gap:8px;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-top:24px;transition:gap .3s}
-.news-card:hover .news-card-link{gap:14px}
+.news-layout{display:grid;grid-template-columns:5fr 7fr;gap:0;max-width:1280px;margin:0 auto;border:1px solid rgba(80,165,173,.12)}
+.news-feat-panel{background:var(--dark);padding:40px 44px;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.news-feat-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--sage))}
+.nfp-badge{font-size:8px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+.nfp-cat{font-size:8px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:5px}
+.nfp-date{font-size:9px;color:rgba(255,255,255,.22);margin-bottom:18px}
+.nfp-title{font-size:clamp(16px,1.7vw,21px);font-weight:300;color:#fff;line-height:1.5;margin-bottom:18px;flex:1}
+.nfp-body{font-size:12.5px;font-weight:300;color:rgba(255,255,255,.46);line-height:1.85;margin-bottom:28px}
+.nfp-link{display:inline-flex;align-items:center;gap:8px;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);transition:gap .25s;cursor:pointer}
+.nfp-link:hover{gap:14px}
+.news-list-col{border-left:1px solid rgba(80,165,173,.12)}
+.news-row{display:grid;grid-template-columns:112px 1fr 28px;align-items:center;gap:16px 20px;padding:18px 28px;border-bottom:1px solid rgba(80,165,173,.09);transition:background .2s;cursor:pointer}
+.news-row:last-child{border-bottom:none}
+.news-row:hover{background:rgba(80,165,173,.04)}
+.news-row:hover .nr-title{color:var(--teal)}
+.news-row:hover .nr-arrow{opacity:1;transform:translateX(4px)}
+.nr-meta{display:flex;flex-direction:column;gap:4px}
+.nr-cat{font-size:7.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal)}
+.nr-date{font-size:8.5px;color:var(--text-m)}
+.nr-title{font-size:13px;font-weight:500;color:var(--text-h);line-height:1.45;transition:color .2s}
+.nr-arrow{color:var(--teal);opacity:.45;transition:opacity .2s,transform .2s;display:flex;align-items:center}
 
 /* ABOUT */
 .about{background:var(--white);border-top:1px solid rgba(80,165,173,.10);padding:120px 72px}
@@ -337,16 +347,8 @@ ul{list-style:none}
 .footer-legal a:hover{color:var(--teal)}
 
 /* THOUGHT LEADERSHIP EXTRAS */
-.news-intro{font-size:15px;font-weight:300;color:var(--text-b);max-width:580px;margin:12px auto 0;text-align:center;line-height:1.8}
-.news-featured{background:var(--dark);color:#fff;padding:56px 64px;margin:56px auto 0;max-width:1200px;position:relative;overflow:hidden}
-.news-featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--sage))}
-.news-feat-label{font-size:8.5px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
-.news-feat-cat{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:8px}
-.news-feat-date{font-size:10px;font-weight:400;color:rgba(255,255,255,.3);margin-bottom:20px}
-.news-feat-title{font-size:clamp(20px,2.4vw,28px);font-weight:300;line-height:1.35;color:#fff;margin-bottom:20px;max-width:780px}
-.news-feat-body{font-size:14px;font-weight:300;color:rgba(255,255,255,.58);line-height:1.9;max-width:740px;margin-bottom:32px}
-.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1280px;margin:56px auto 0}
-.news-footer{text-align:center;padding:56px 0 0}
+.news-intro{font-size:14px;font-weight:300;color:var(--text-b);max-width:520px;margin:10px auto 0;text-align:center;line-height:1.8}
+.news-footer{text-align:center;padding:40px 0 0;max-width:1280px;margin:0 auto}
 .news-footer .btn-primary{display:inline-block}
 
 /* T&Cs MODAL */
@@ -851,73 +853,47 @@ ul{list-style:none}
     <h2 class="news-h2">Market Intelligence.<br/><strong>From the Trading Desk.</strong></h2>
     <p class="news-intro">Pricing, compliance and supply chain insight from GME's trading and operations teams.</p>
   </div>
-  <div class="news-featured rev">
-    <div class="news-feat-label">Featured</div>
-    <div class="news-feat-cat">Market Intelligence</div>
-    <div class="news-feat-date">May 2024</div>
-    <h3 class="news-feat-title">The Arabian Gulf Bunker Market in 2024: Supply Dynamics, Pricing Pressure and What Operators Should Know</h3>
-    <p class="news-feat-body">Fujairah remains a high-volume hub but the competitive landscape is shifting. GME's trading desk looks at HSFO and VLSFO spread dynamics in the Gulf, the factors behind price volatility at Khor Fakkan and Port Rashid, and what operators should factor into procurement for the rest of 2024.</p>
-    <span class="news-card-link">Read Full Article <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
-  </div>
-  <div class="news-grid">
-    <div class="news-card rev">
-      <div class="news-card-top"></div>
-      <div class="news-card-body">
-        <div class="news-card-cat">Market Insight</div>
-        <div class="news-card-date">March 2024</div>
-        <div class="news-card-title">HSFO vs VLSFO: How Shipowners Should Think About the Choice in 2024</div>
-        <p class="news-card-excerpt">Four years on from IMO 2020, the market has settled but the HSFO vs VLSFO decision still matters. Spread dynamics, scrubber economics and port availability all factor in.</p>
-        <span class="news-card-link">Read Article <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
-      </div>
+  <div class="news-layout rev">
+    <!-- Featured article -->
+    <div class="news-feat-panel">
+      <div class="nfp-badge">Featured</div>
+      <div class="nfp-cat">Market Intelligence</div>
+      <div class="nfp-date">May 2024</div>
+      <div class="nfp-title">The Arabian Gulf Bunker Market in 2024: Supply Dynamics, Pricing Pressure and What Operators Should Know</div>
+      <p class="nfp-body">Fujairah remains a high-volume hub but the competitive landscape is shifting. GME's trading desk looks at HSFO and VLSFO spread dynamics, the factors behind price volatility at Khor Fakkan and Port Rashid, and what operators should factor into procurement for the rest of 2024.</p>
+      <span class="nfp-link">Read Full Article <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
     </div>
-    <div class="news-card rev" style="transition-delay:.1s">
-      <div class="news-card-top"></div>
-      <div class="news-card-body">
-        <div class="news-card-cat">Compliance</div>
-        <div class="news-card-date">January 2024</div>
-        <div class="news-card-title">MGO in ECA Zones: Documentation, Testing and What Port State Control Expects</div>
-        <p class="news-card-excerpt">Enforcement in Emissions Control Areas is tightening. Compliant MGO is necessary but not sufficient. Documentation and sampling procedures are where operators get caught out.</p>
-        <span class="news-card-link">Read Article <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+    <!-- Article list -->
+    <div class="news-list-col">
+      <div class="news-row">
+        <div class="nr-meta"><span class="nr-cat">Market Insight</span><span class="nr-date">Mar 2024</span></div>
+        <div class="nr-title">HSFO vs VLSFO: How Shipowners Should Think About the Choice in 2024</div>
+        <div class="nr-arrow"><svg width="16" height="16" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
       </div>
-    </div>
-    <div class="news-card rev" style="transition-delay:.2s">
-      <div class="news-card-top"></div>
-      <div class="news-card-body">
-        <div class="news-card-cat">Operations</div>
-        <div class="news-card-date">February 2024</div>
-        <div class="news-card-title">Short-Notice Stems: How Reliable Physical Suppliers Manage the Last 48 Hours</div>
-        <p class="news-card-excerpt">The short-notice stem is the toughest test in bunker operations. Vessel arrives early, port window is tight, product needs to be on board before departure. Supply readiness is built, not improvised.</p>
-        <span class="news-card-link">Read Article <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      <div class="news-row">
+        <div class="nr-meta"><span class="nr-cat">Compliance</span><span class="nr-date">Jan 2024</span></div>
+        <div class="nr-title">MGO in ECA Zones: Documentation, Testing and What Port State Control Expects</div>
+        <div class="nr-arrow"><svg width="16" height="16" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
       </div>
-    </div>
-    <div class="news-card rev" style="transition-delay:.1s">
-      <div class="news-card-top"></div>
-      <div class="news-card-body">
-        <div class="news-card-cat">Industry Analysis</div>
-        <div class="news-card-date">December 2023</div>
-        <div class="news-card-title">Credit Risk in Bunker Trading: The Case for Stronger Counterparty Standards</div>
-        <p class="news-card-excerpt">High-volume, low-margin deals on thin credit lines remain the industry's structural weak point. How operators assess and manage counterparty risk before the stem.</p>
-        <span class="news-card-link">Read Article <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      <div class="news-row">
+        <div class="nr-meta"><span class="nr-cat">Operations</span><span class="nr-date">Feb 2024</span></div>
+        <div class="nr-title">Short-Notice Stems: How Reliable Physical Suppliers Manage the Last 48 Hours</div>
+        <div class="nr-arrow"><svg width="16" height="16" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
       </div>
-    </div>
-    <div class="news-card rev" style="transition-delay:.2s">
-      <div class="news-card-top"></div>
-      <div class="news-card-body">
-        <div class="news-card-cat">Quality &amp; Compliance</div>
-        <div class="news-card-date">November 2023</div>
-        <div class="news-card-title">ISO 8217: What the Standard Actually Requires and Where Disputes Arise</div>
-        <p class="news-card-excerpt">ISO 8217 is the backbone of marine fuel quality but it is frequently misunderstood. The most common claim scenarios and how rigorous pre-delivery sampling prevents them.</p>
-        <span class="news-card-link">Read Article <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      <div class="news-row">
+        <div class="nr-meta"><span class="nr-cat">Industry</span><span class="nr-date">Dec 2023</span></div>
+        <div class="nr-title">Credit Risk in Bunker Trading: The Case for Stronger Counterparty Standards</div>
+        <div class="nr-arrow"><svg width="16" height="16" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
       </div>
-    </div>
-    <div class="news-card rev" style="transition-delay:.3s">
-      <div class="news-card-top"></div>
-      <div class="news-card-body">
-        <div class="news-card-cat">Risk &amp; Finance</div>
-        <div class="news-card-date">October 2023</div>
-        <div class="news-card-title">Payment Terms in Physical Bunkering: What Operators Need to Negotiate Before the Stem</div>
-        <p class="news-card-excerpt">Payment risk in bunker supply is asymmetric. The key credit and payment terms to nail down before the stem, not after.</p>
-        <span class="news-card-link">Read Article <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+      <div class="news-row">
+        <div class="nr-meta"><span class="nr-cat">Quality</span><span class="nr-date">Nov 2023</span></div>
+        <div class="nr-title">ISO 8217: What the Standard Actually Requires and Where Disputes Arise</div>
+        <div class="nr-arrow"><svg width="16" height="16" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="news-row">
+        <div class="nr-meta"><span class="nr-cat">Risk &amp; Finance</span><span class="nr-date">Oct 2023</span></div>
+        <div class="nr-title">Payment Terms in Physical Bunkering: What Operators Need to Negotiate Before the Stem</div>
+        <div class="nr-arrow"><svg width="16" height="16" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
       </div>
     </div>
   </div>
@@ -1061,4 +1037,4 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementB
 </script>
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
