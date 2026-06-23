@@ -75,7 +75,9 @@ ul{list-style:none}
 .hero-eyebrow::before{content:'';display:block;width:36px;height:1.5px;background:var(--teal)}
 .hero-h1{font-size:clamp(42px,6vw,80px);font-weight:200;color:#fff;line-height:1.1;letter-spacing:-.01em;margin-bottom:28px}
 .hero-h1 strong{font-weight:700;color:var(--teal-light)}
-.hero-sub{font-size:clamp(14px,1.6vw,17px);font-weight:300;color:rgba(255,255,255,.70);line-height:1.8;max-width:520px;margin-bottom:48px}
+.hero-sub{font-size:clamp(14px,1.6vw,17px);font-weight:300;color:rgba(255,255,255,.70);line-height:1.8;max-width:520px;margin-bottom:28px}
+.hero-pillars{display:flex;gap:32px;flex-wrap:wrap;margin-bottom:48px}
+.hero-pillars span{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal-light)}
 .hero-actions{display:flex;gap:20px;align-items:center}
 .btn-primary{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:16px 38px;background:var(--teal);color:#fff;transition:background .3s}
 .btn-primary:hover{background:var(--teal-dark)}
@@ -403,8 +405,13 @@ ul{list-style:none}
   <div class="hero-overlay"></div>
   <div class="hero-inner">
     <p class="hero-eyebrow">Global Marine Energy — Est. 2024</p>
-    <h1 class="hero-h1">Powering the<br/><strong>World's Oceans.</strong><br/>Delivering the Future.</h1>
-    <p class="hero-sub">A new era in marine fuel supply. GME delivers HSFO, VLSFO and Marine Gasoil to the world's major ports — with uncompromising quality assurance, competitive pricing and round-the-clock operations.</p>
+    <h1 class="hero-h1">Global<br/><strong>Marine Energy.</strong></h1>
+    <p class="hero-sub">We deliver marine fuels with precision, consistency, and trust — supporting our clients through steady, reliable supply.</p>
+    <div class="hero-pillars">
+      <span>Global Reach.</span>
+      <span>Trusted Supply.</span>
+      <span>Proven Expertise.</span>
+    </div>
     <div class="hero-actions">
       <a href="#capabilities" class="btn-primary">Our Services</a>
       <a href="#network" class="btn-ghost">Explore Network <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -984,8 +991,4 @@ setTimeout(()=>counters.forEach(el=>{if(el.textContent==='0'||el.textContent==='
 counters.forEach(el=>cntObs.observe(el));
 const gmeMapSvg=document.getElementById('gmeMapSvg'),mapTip=document.getElementById('mapTooltip');
 if(gmeMapSvg&&mapTip){const mapWrap=gmeMapSvg.closest('.gme-map');gmeMapSvg.querySelectorAll('.map-hub,.map-port').forEach(el=>{el.addEventListener('mouseenter',()=>{mapTip.querySelector('.mtt-type').textContent=el.dataset.type||'';mapTip.querySelector('.mtt-name').textContent=el.dataset.name||'';mapTip.style.display='block'});el.addEventListener('mousemove',ev=>{const r=mapWrap.getBoundingClientRect();mapTip.style.left=(ev.clientX-r.left+14)+'px';mapTip.style.top=(ev.clientY-r.top-8)+'px'});el.addEventListener('mouseleave',()=>{mapTip.style.display='none'})})}
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('tcModal').classList.remove('open')});
-</script>
-</body>
-</html>
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if
