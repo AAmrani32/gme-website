@@ -35,12 +35,9 @@ ul{list-style:none}
 /* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(255,255,255,0);border-bottom:1px solid transparent;transition:background .4s,border-color .4s}
 .nav.scrolled{background:rgba(255,255,255,.96);border-bottom-color:rgba(80,165,173,.12);backdrop-filter:blur(12px)}
-.nav-logo{display:flex;align-items:center;gap:11px;cursor:pointer}
-.nav-logo-mark svg{width:40px;height:40px}
-.nav-logo-text{display:flex;flex-direction:column;line-height:1}
-.nav-logo-gme{font-size:20px;font-weight:800;letter-spacing:.15em;color:var(--teal)}
-.nav-logo-sub{font-size:7.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:2px}
-.nav.scrolled .nav-logo-sub{color:var(--slate)}
+.nav-logo{display:flex;align-items:center;cursor:pointer}
+.nav-logo-img{height:48px;width:auto;display:block;filter:brightness(1.6)}
+.nav.scrolled .nav-logo-img{filter:none}
 .nav-links{display:flex;align-items:center;gap:36px}
 .nav-links a{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.82);transition:color .3s}
 .nav.scrolled .nav-links a{color:var(--slate)}
@@ -331,9 +328,8 @@ ul{list-style:none}
 /* FOOTER */
 .footer{background:var(--dark);border-top:1px solid rgba(80,165,173,.12);padding:72px 72px 40px}
 .footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:48px;margin-bottom:64px}
-.footer-logo{display:flex;align-items:center;gap:11px;margin-bottom:20px}
-.footer-logo-gme{font-size:18px;font-weight:800;letter-spacing:.15em;color:var(--teal)}
-.footer-logo-sub{font-size:7px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:2px}
+.footer-logo{margin-bottom:20px}
+.footer-logo-img{height:52px;width:auto;display:block}
 .footer-desc{font-size:12.5px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.9;max-width:260px;margin-bottom:28px}
 .footer-reg{font-size:9px;font-weight:500;letter-spacing:.1em;color:rgba(255,255,255,.22)}
 .footer-col-title{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--teal);margin-bottom:20px}
@@ -529,28 +525,9 @@ ul{list-style:none}
 
 <!-- NAV -->
 <nav class="nav" id="mainNav">
-  <div class="nav-logo">
-    <div class="nav-logo-mark">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
-        <defs>
-          <radialGradient id="lgA" cx="38%" cy="62%" r="58%">
-            <stop offset="0%" stop-color="#8EC4A8"/>
-            <stop offset="55%" stop-color="#50A5AD"/>
-            <stop offset="100%" stop-color="#3A8A93"/>
-          </radialGradient>
-          <clipPath id="lgClip"><circle cx="20" cy="20" r="18"/></clipPath>
-        </defs>
-        <circle cx="20" cy="20" r="18" fill="url(#lgA)"/>
-        <path d="M25,3 Q36,8 38,20 Q38,30 30,36 L23,36 Q33,28 32,18 Q30,9 20,5Z" fill="#7ECCD4" opacity=".65" clip-path="url(#lgClip)"/>
-        <path d="M3,22 Q12,18 22,20 Q30,22 37,18" fill="none" stroke="#0D3040" stroke-width="2.8" opacity=".4" clip-path="url(#lgClip)"/>
-        <path d="M5,29 Q14,25 24,27 Q32,29 37,25" fill="none" stroke="#0D3040" stroke-width="2.2" opacity=".30" clip-path="url(#lgClip)"/>
-      </svg>
-    </div>
-    <div class="nav-logo-text">
-      <span class="nav-logo-gme">GME</span>
-      <span class="nav-logo-sub">Global Marine Energy</span>
-    </div>
-  </div>
+  <a href="#home" class="nav-logo" aria-label="GME Home">
+    <img src="gme-amber.svg" alt="GME — Global Marine Energy" class="nav-logo-img">
+  </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li class="nav-dropdown">
@@ -1117,10 +1094,22 @@ ul{list-style:none}
   <div class="footer-top">
     <div class="footer-col">
       <div class="footer-logo">
-        <div>
-          <div class="footer-logo-gme">GME</div>
-          <div class="footer-logo-sub">Global Marine Energy</div>
-        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 120" class="footer-logo-img" aria-label="GME Global Marine Energy">
+          <defs>
+            <linearGradient id="gmeSphereF" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#4E9A8E"/>
+              <stop offset="1" stop-color="#9DC4A6"/>
+            </linearGradient>
+            <clipPath id="gmeClipF"><circle cx="60" cy="60" r="48"/></clipPath>
+          </defs>
+          <circle cx="60" cy="60" r="48" fill="url(#gmeSphereF)"/>
+          <g clip-path="url(#gmeClipF)" fill="none" stroke-linecap="round">
+            <path d="M6 50 Q56 18 116 48" stroke="#FFFFFF" stroke-width="9"/>
+            <path d="M2 50 Q52 22 112 40" stroke="#F2C45A" stroke-width="7"/>
+            <path d="M8 74 Q60 96 118 66" stroke="#FFFFFF" stroke-width="6"/>
+          </g>
+          <text x="128" y="80" font-family="'Hanken Grotesk', Arial, sans-serif" font-size="58" font-weight="800" fill="rgba(255,255,255,0.90)" letter-spacing="1">GME</text>
+        </svg>
       </div>
       <p class="footer-desc">Physical marine fuel supply across Gulf, African and Asian port corridors. Reliable, compliant and on time.</p>
       <p class="footer-reg">Registered in Dubai, UAE · Est. 2024</p>
@@ -1183,4 +1172,5 @@ ul{list-style:none}
     <div class="tc-section"><div class="tc-section-num">Clause 6</div><h3>Vessel Responsibility</h3><p>The Buyer warrants that the receiving vessel is in a fit and proper condition to receive the Product and that all bunker manifolds, piping and tanks are suitable for the grade and quantity ordered. The Buyer shall be solely responsible for ensuring that the vessel's crew and officers are present and attentive throughout the delivery operation. GME shall not be liable for any spillage, contamination or loss arising from the condition or operation of the receiving vessel's equipment or crew.</p></div>
     <div class="tc-section"><div class="tc-section-num">Clause 7</div><h3>Limitation of Liability</h3><p>GME's total liability to the Buyer under or in connection with any Contract shall not exceed the invoice value of the Product delivered under that Contract. In no circumstances shall GME be liable for any indirect, consequential, special or punitive losses, including but not limited to loss of profit, loss of use of vessel, demurrage, detention, deviation costs or reputational damage, whether arising in contract, tort or otherwise.</p></div>
     <div class="tc-section"><div class="tc-section-num">Clause 8</div><h3>Sanctions Compliance</h3><p>The Buyer warrants that neither the Buyer, the vessel, the cargo nor any party connected with the transaction is subject to sanctions administered by the United Nations, the European Union, the United States Office of Foreign Assets Control (OFAC), or any other applicable sanctions authority. GME reserves the right to suspend or cancel delivery without liability in the event that it reasonably believes that any sanction may apply. The Buyer shall indemnify GME against all losses arising from any breach of this warranty.</p></div>
-    <div class="tc-section"><div class="tc-section-num">Clause 9</div><h3>Force Majeure</h3><p>Neither party shall be in breach of the Contract, nor liable for any failure or delay in performance, to the extent that such failure or delay is caused by circumstances beyond that party's reasonable control, including but not limited to acts of God, war, civil unrest, port closure, governmental action, weather, or industrial dispute. The affected party shall notify the ot
+    <div class="tc-section"><div class="tc-section-num">Clause 9</div><h3>Force Majeure</h3><p>Neither party shall be in breach of the Contract, nor liable for any failure or delay in performance, to the extent that such failure or delay is caused by circumstances beyond that party's reasonable control, including but not limited to acts of God, war, civil unrest, port closure, governmental action, weather, or industrial dispute. The affected party shall notify the other in writing as soon as reasonably practicable. If the force majeure event continues for more than 14 days, either party may terminate the Contract without liability on written notice.</p></div>
+    <div class="tc-section"><div class="tc-section-num">Clause 10</div><h3>Governing Law &amp; Arbitration</h3><p>These Terms and Conditions and any Contract incorporating them shall be governed by and construed in accordance with English law. Any dispute arising out of or in connection with any Contract, including any question regarding its existence, validity or termin
