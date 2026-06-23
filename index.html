@@ -33,17 +33,19 @@ ul{list-style:none}
 .rev.in,.rev-l.in,.rev-r.in{opacity:1;transform:none}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(255,255,255,0);border-bottom:1px solid transparent;transition:background .4s,border-color .4s}
-.nav.scrolled{background:rgba(255,255,255,.96);border-bottom-color:rgba(80,165,173,.12);backdrop-filter:blur(12px)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(4,14,20,.55);border-bottom:1px solid transparent;transition:background .4s,border-color .4s,box-shadow .4s;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.nav.scrolled{background:rgba(255,255,255,.97);border-bottom-color:rgba(80,165,173,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 2px 24px rgba(0,0,0,.07)}
 .nav-logo{display:flex;align-items:center;cursor:pointer}
 .nav-logo-img{height:48px;width:auto;display:block;filter:brightness(1.6)}
 .nav.scrolled .nav-logo-img{filter:none}
 .nav-links{display:flex;align-items:center;gap:36px}
-.nav-links a{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.82);transition:color .3s}
-.nav.scrolled .nav-links a{color:var(--slate)}
+.nav-links a{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.88);transition:color .3s}
+.nav.scrolled .nav-links a{color:var(--dark)}
 .nav-links a:hover{color:var(--teal)}
-.nav-cta{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);border:1.5px solid var(--teal);padding:9px 22px;transition:background .3s,color .3s}
-.nav-cta:hover{background:var(--teal);color:#fff}
+.nav-cta{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#fff;border:1.5px solid rgba(255,255,255,.6);padding:9px 22px;transition:background .3s,color .3s,border-color .3s}
+.nav-cta:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+.nav.scrolled .nav-cta{color:var(--teal);border-color:var(--teal)}
+.nav.scrolled .nav-cta:hover{background:var(--teal);color:#fff}
 .nav-dropdown{position:relative}
 .nav-dropdown>a::after{content:'▾';margin-left:5px;font-size:9px;opacity:.7}
 .nav-dropdown-menu{display:none;position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);min-width:180px;background:#fff;border-top:2px solid var(--teal);box-shadow:0 8px 32px rgba(0,0,0,.13);padding:8px 0;z-index:200}
@@ -370,7 +372,7 @@ ul{list-style:none}
    HAMBURGER + MOBILE NAV
 ═══════════════════════════════════════ */
 .nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:10px;min-width:44px;min-height:44px;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
-.nav-burger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:transform .28s ease,opacity .28s ease}
+.nav-burger span{display:block;width:22px;height:2px;background:rgba(255,255,255,.9);border-radius:2px;transition:transform .28s ease,opacity .28s ease,background .3s}
 .nav.scrolled .nav-burger span{background:var(--dark)}
 .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav-burger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
@@ -1172,5 +1174,4 @@ ul{list-style:none}
     <div class="tc-section"><div class="tc-section-num">Clause 6</div><h3>Vessel Responsibility</h3><p>The Buyer warrants that the receiving vessel is in a fit and proper condition to receive the Product and that all bunker manifolds, piping and tanks are suitable for the grade and quantity ordered. The Buyer shall be solely responsible for ensuring that the vessel's crew and officers are present and attentive throughout the delivery operation. GME shall not be liable for any spillage, contamination or loss arising from the condition or operation of the receiving vessel's equipment or crew.</p></div>
     <div class="tc-section"><div class="tc-section-num">Clause 7</div><h3>Limitation of Liability</h3><p>GME's total liability to the Buyer under or in connection with any Contract shall not exceed the invoice value of the Product delivered under that Contract. In no circumstances shall GME be liable for any indirect, consequential, special or punitive losses, including but not limited to loss of profit, loss of use of vessel, demurrage, detention, deviation costs or reputational damage, whether arising in contract, tort or otherwise.</p></div>
     <div class="tc-section"><div class="tc-section-num">Clause 8</div><h3>Sanctions Compliance</h3><p>The Buyer warrants that neither the Buyer, the vessel, the cargo nor any party connected with the transaction is subject to sanctions administered by the United Nations, the European Union, the United States Office of Foreign Assets Control (OFAC), or any other applicable sanctions authority. GME reserves the right to suspend or cancel delivery without liability in the event that it reasonably believes that any sanction may apply. The Buyer shall indemnify GME against all losses arising from any breach of this warranty.</p></div>
-    <div class="tc-section"><div class="tc-section-num">Clause 9</div><h3>Force Majeure</h3><p>Neither party shall be in breach of the Contract, nor liable for any failure or delay in performance, to the extent that such failure or delay is caused by circumstances beyond that party's reasonable control, including but not limited to acts of God, war, civil unrest, port closure, governmental action, weather, or industrial dispute. The affected party shall notify the other in writing as soon as reasonably practicable. If the force majeure event continues for more than 14 days, either party may terminate the Contract without liability on written notice.</p></div>
-    <div class="tc-section"><div class="tc-section-num">Clause 10</div><h3>Governing Law &amp; Arbitration</h3><p>These Terms and Conditions and any Contract incorporatin
+    <div class="tc-section"><div class="tc-section-num">Clause 9</div><h3>Force Majeure</h3><p>Neither party shall be in breach of the Contract, nor liable for any failure or delay in performance, to the extent that such failure or delay is caused by circumstances beyond that party's reasonable control, including but not limited to acts of God, war, civil unrest, port closure, governmental action, weather, or industrial dispute. The affected party shall notify the other in writing a
